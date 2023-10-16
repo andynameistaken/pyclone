@@ -1,0 +1,2 @@
+typeCheck(value_1) = Integer
+typeCheck(value_2) = Float

@@ -1,0 +1,1895 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Programming Notes">
+      
+      
+        <meta name="author" content="Andrzej Zahorski">
+      
+      
+        <link rel="canonical" href="https://codenotes.dev/java-notes/md_java/old_intro/">
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.3">
+    
+    
+      
+        <title>Old intro - Code Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.c4a75a56.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Montserrat";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../../css/ansi-colours.css">
+    
+      <link rel="stylesheet" href="../../../css/pandas-dataframe.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#alan-kay-definition-of-oop-by-small-talk" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Code Notes" class="md-header__button md-logo" aria-label="Code Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Code Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Old intro
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent="green"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../tags/" class="md-tabs__link">
+      Tags
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../core/" class="md-tabs__link">
+        Java
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../Algorithms/src" class="md-tabs__link">
+      Algorithms
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../Python-Notes/iterators_generators/" class="md-tabs__link">
+        Python
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Code Notes" class="md-nav__button md-logo" aria-label="Code Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Code Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tags/" class="md-nav__link">
+        Tags
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          Java
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Java
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../core/">Core Java</a>
+          
+            <label for="__nav_2_1">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Core Java
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../core/Object-Oriented-Concepts/" class="md-nav__link">
+        Object-Oriented Concepts
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+          Collections
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Collections
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/md_java/collections/index.md" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Java_Notes/md_java/collections/Properties.md" class="md-nav__link">
+        Properties
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithms/src" class="md-nav__link">
+        Algorithms
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          Python
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Python
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python-Notes/iterators_generators/" class="md-nav__link">
+        Iterators generators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python-Notes/lazy_evaluation/" class="md-nav__link">
+        Lazy evaluation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+          Old
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          Old
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_1" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_3_1" id="__nav_4_3_1_label" tabindex="0">
+          Python course
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Python course
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_1_1" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Python-Notes/old/python-course/md/">Md</a>
+          
+            <label for="__nav_4_3_1_1">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_3_1_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_3_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          Md
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python-Notes/old/python-course/md/Test/" class="md-nav__link">
+        Test
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python-Notes/old/python-course/md/assigment_expressions/" class="md-nav__link">
+        Assigment expressions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python-Notes/old/python-course/md/objects/" class="md-nav__link">
+        Objects
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python-Notes/old/python-course/md/t01_strings/" class="md-nav__link">
+        Strings
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python-Notes/old/python-course/md/t02_python_internals/" class="md-nav__link">
+        Python Internals
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python-Notes/old/python-course/md/t03_variables/" class="md-nav__link">
+        Variables
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python-Notes/old/python-course/md/t04_static_vs_dynamic_typing/" class="md-nav__link">
+        T04 static vs dynamic typing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_1_2" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_3_1_2" id="__nav_4_3_1_2_label" tabindex="0">
+          Notebooks
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_3_1_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_3_1_2">
+          <span class="md-nav__icon md-icon"></span>
+          Notebooks
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python-Notes/old/python-course/notebooks/assigment_expressions/" class="md-nav__link">
+        Assigment expressions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python-Notes/old/python-course/notebooks/objects/" class="md-nav__link">
+        Objects
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python-Notes/old/python-course/notebooks/t01_strings/" class="md-nav__link">
+        T01 strings
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python-Notes/old/python-course/notebooks/t02_python_internals/" class="md-nav__link">
+        T02 python internals
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python-Notes/old/python-course/notebooks/t03_variables/" class="md-nav__link">
+        T03 variables
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_2" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Python-Notes/old/python-notes/">Python notes</a>
+          
+            <label for="__nav_4_3_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Python notes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python-Notes/old/python-notes/lambda/" class="md-nav__link">
+        Lambda
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python-Notes/old/python-notes/m01/" class="md-nav__link">
+        M01
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#alan-kay-definition-of-oop-by-small-talk" class="md-nav__link">
+    Alan Kay definition of OOP by Small Talk
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interface-of-the-object" class="md-nav__link">
+    Interface of the Object
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objects-as-service-providers" class="md-nav__link">
+    Objects As Service Providers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hiding-the-implementation" class="md-nav__link">
+    Hiding the implementation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reuse" class="md-nav__link">
+    Reuse
+  </a>
+  
+    <nav class="md-nav" aria-label="Reuse">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#composition" class="md-nav__link">
+    Composition
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inheritance" class="md-nav__link">
+    Inheritance
+  </a>
+  
+    <nav class="md-nav" aria-label="Inheritance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general-features-of-the-inheritance" class="md-nav__link">
+    General Features of The Inheritance
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-ways-of-implementing-the-inheritance" class="md-nav__link">
+    The Ways of Implementing The Inheritance
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objects-vs-normal-life" class="md-nav__link">
+    Objects vs normal life
+  </a>
+  
+    <nav class="md-nav" aria-label="Objects vs normal life">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#subsec:benefits-of-object-oriented-programming" class="md-nav__link">
+    Benefits Of Object Oriented Programming
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sec:what-is-a-class?" class="md-nav__link">
+    What Is a Class?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sec:what-is-inheritance" class="md-nav__link">
+    What Is Inheritance
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sec:what-is-an-interface" class="md-nav__link">
+    What Is an Interface
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sec:what-is-a-package" class="md-nav__link">
+    What Is a Package
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+
+
+
+                  
+  
+
+
+
+
+  <h1>Old intro</h1>
+
+<p>Next step of evolution were imperative languages which are the sequences of statements
+designed to reach a certain goal, for example <em>C</em> language.
+They provided abstraction for an assembly language however they were so so
+specific that you weren't able to leave the realm of thinking in terms of the computer structure
+to focus on the problem itself. The product of that effort is the code that is hard to
+read and understand.</p>
+<div class="admonition info">
+<p class="admonition-title">Imperative Programming</p>
+</div>
+<p>imperative programming is a
+<a href="https://en.wikipedia.org/wiki/Programming_paradigm" title="Programming paradigm">programming paradigm</a>
+that uses <a href="https://en.wikipedia.org/wiki/Statement_(computer_science)">statements</a>
+"Statement (computer science)")
+that change a program's <a href="https://en.wikipedia.org/wiki/State_(computer_science)">state</a>
+"State (computer science)").
+You might want to read <a href="imperative%20vs%20functional%20language">imperative vs functional language</a></p>
+<p>Alternatively to computer-like models there are languages with the focus on problems you're trying
+to solve - Prolog for example - it uses chains of relations which can be checked by queries.
+They have one caveat though which is that if you step out the domain of the problems those
+languages are designed for, you
+will end up with pretty unwieldy code - for example Prolog's non-deterministic (definition: even
+for the same input algorithm, can exhibit different behaviors on different runs) evaluation strategy
+is problematic for deterministic computations.</p>
+<div class="admonition info">
+<p class="admonition-title">Deterministic Computation</p>
+</div>
+<p>A deterministic <a href="https://en.wikipedia.org/wiki/Model_of_computation" title="Model of computation">model of computation</a>, for example
+a <a href="https://en.wikipedia.org/wiki/Deterministic_Turing_machine" title="Deterministic Turing machine">deterministic Turing machine</a>
+, is a model of computation such that the successive states of the machine and the operations to be
+performed are completely determined by the preceding state.</p>
+<div class="admonition info">
+<p class="admonition-title">Non-deterministic Algorithm</p>
+</div>
+<p>a <strong>nondeterministic algorithm</strong> is
+an <a href="https://en.wikipedia.org/wiki/Algorithm" title="Algorithm">algorithm</a> that, even for the same input,
+can exhibit different behaviors on different runs, as opposed to
+a [deterministic algorithm](https://en.wikipedia.org/wiki/Deterministic_algorithm "Deterministic algorithm".</p>
+<p>The Object-Oriented Programming paradigm tries to overcome this issue by providing general tools for
+working with the problems, so instead thinking about the language you can focus on the work you're
+trying to do (to some extent).</p>
+<p>Fundamental part of being able to grasp general concepts is the process of creating abstractions, in
+OOP we use abstract data types which are called <em>classes</em>.
+If you had the luck of learning about Aristotle, you can think about classes a bit like
+in his concept used for the classification of living things - for example: the abstract class of
+live bearing tetrapods can be represented by specific object like someone's cat named Oreo.</p>
+<p>In OOP we create new definitions for the reality we are trying to map, and the new ways to represent
+data - we call them data types.</p>
+<p>So, to be specific with definitions: a <em>class</em> is description for object's characteristics (data)
+and functionalities (behavior) which becomes <em>interface</em> of the communication.</p>
+<p>If you're interested of what is a <em>true</em> OOP approach, we could look at what Alan Kay said
+about <a href="https://en.wikipedia.org/wiki/Smalltalk">Small Talk</a> (first influential OOP language):</p>
+<h2 id="alan-kay-definition-of-oop-by-small-talk">Alan Kay definition of OOP by Small Talk<a class="headerlink" href="#alan-kay-definition-of-oop-by-small-talk" title="Permanent link">¶</a></h2>
+<ol>
+<li><strong>Everything is an object</strong>. It works like special variable that stores data and you give request
+   to achieve desired effect and change its state - like you press button to get soda from a vending
+   machine, but you can map virtually anything to object representation.</li>
+<li><strong>Objects can communicate by sending and receiving messages</strong> - working program is like multiple
+   ports (objects) that send each other ships (data) through river streams (it could be inside
+   program or in the network)</li>
+<li><strong>Each object has its ow memory which consists of other objects</strong>. You can picture it as some
+   kind of <a href="https://en.wikipedia.org/wiki/Bento">bento meal</a> - the whole dish consists of many sub
+   parts, but you take one package, so you just eat whole thing and don't think about complexity
+   inside when you don't have to.</li>
+<li>Each object is an instance of a class. Class is representing general grouping like for example <span class="arithmatex">\(1
+   \in \mathbb{N}\)</span> 1 is an instance (object) of an <span class="arithmatex">\(\mathbb{N}\)</span> set.</li>
+<li>The class is the repository for <em>behavior</em> associated with an object. It means that all objects
+   of the same class can perform the same action. For example mouse button and keyboard key are
+   Buttons, so they both have Key Pressed functionality.</li>
+</ol>
+<h2 id="interface-of-the-object">Interface of the Object<a class="headerlink" href="#interface-of-the-object" title="Permanent link">¶</a></h2>
+<p>In real world many objects are of the same kind movies, games etc. A class (which is often called
+a <em>type</em> - a pet Captain Meows is a <em>type</em> of Cat) is an abstract data type for object: a blueprint</p>
+<ul>
+<li>it describes functionalities by what kind of behaviors are possible so we can modify object
+  characteristics - an <em>interface</em>. If we have specified class we can create as many objects as we can
+  and the only constraints are resources of the computer.</li>
+</ul>
+<pre class="mermaid"><code>classDiagram 
+class Duck
+Duck : -beakSize 
+Duck : -legHeight 
+Duck : +walk(distance) 
+Duck : +quack(loudness)</code></pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">Duck</span><span class="w"> </span><span class="n">d1</span><span class="o">=</span><span class="k">new</span><span class="w"> </span><span class="n">Duck</span><span class="p">();</span>
+<span class="w">        </span><span class="n">d1</span><span class="p">.</span><span class="na">quack</span><span class="p">(</span><span class="s">"loudly"</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><code>Duck</code> has 2 functionalities in its <em>interface</em>: it can walk and quack (this is what ducks mostly
+do). The interface describes what you can request from specific object, you send it (<code>d1.quack()</code>)
+and object performs action based upon it (specific duck performs its quacking code). Also a small
+but important bit of terminology:</p>
+<ul>
+<li><code>d1</code> is a <strong>reference</strong> for the <code>Duck</code>object.</li>
+<li>processing data in object is done via <em>methods</em> (<code>walk(distance)</code> is a method) and method is an
+  object-oriented fuction</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">fuction vs method</p>
+</div>
+<p>A <strong>function</strong> is a piece of code that is called by name. It can be passed data to operate on (i.e.
+the parameters) and can optionally return data (the return value). All data that is passed to a
+function is explicitly passed.
+A <strong>method</strong> is a piece of code that is called by a name that is associated with an object. In most
+respects it is identical to a function except for two key differences:</p>
+<ol>
+<li>A method is implicitly passed the object on which it was called</li>
+<li>A method is able to operate on data that is contained within the class (remembering that an
+   object is an instance of a class - the class is the definition, the object is an instance of that
+   data).</li>
+</ol>
+<p>To send a message you choose the object reference (<code>d1</code>) place dot after it and write method name.</p>
+<h2 id="objects-as-service-providers">Objects As Service Providers<a class="headerlink" href="#objects-as-service-providers" title="Permanent link">¶</a></h2>
+<p>When you are designing on working with Object-Oriented Program you can look at objects as <em>service
+providers</em>. In that way you are creating, importing (or pasting form stackoverflow) set of objects
+that are providing services that solve your problem. Thinking in such way may help you improve *
+cohesiveness* of your code, in other words your parts of program will fit together well, and you
+won't have desire to put too many functionalities in a single object. For example when you are
+designing a calculator, the object <code>Button</code> should provide service for pressing it, not the
+calculation itself. After that you can pair specific <code>Button</code> press to perform a request
+to <code>Calculation</code> object that has <code>multiply</code>
+method.</p>
+<p>Treating objects as service providers brings benefits also for consumers of your program - if
+someone finds services of your object useful, they can be fitted to other programs more easily.</p>
+<h2 id="hiding-the-implementation">Hiding the implementation<a class="headerlink" href="#hiding-the-implementation" title="Permanent link">¶</a></h2>
+<p>As you have seen - we should consider other people using our programs - clients.</p>
+<p>The goal of the client programmer is to collect a toolbox full of classes to use for rapid
+application development. Our job is to build a class that exposes only what’s necessary to the
+client programmer and hide everything else and keeps everything else hidden. It is useful, because
+we can change the hidden portion without worrying about the impact of breaking workflow of a client.
+Why? Because if it’s hidden, the client programmer which means the class creator can change the
+hidden portion at will without worrying about the impact on anyone else and it reduces the
+possibility of introducing new bugs, because client has less stuff to break. It is also beneficial
+for the client because if we hide code that is not used for problem-solving by them.</p>
+<p>Java has 4 ways of setting access boundaries for a class:</p>
+<ul>
+<li>
+<p>public</p>
+</li>
+<li>
+<p>means the element is available to everyone</p>
+</li>
+<li>
+<p>private</p>
+</li>
+<li>
+<p>means no one can access the element except you - inside methods of that type. Anyone trying to
+    access a private member gets a compile-time error.</p>
+</li>
+<li>
+<p>protected</p>
+</li>
+<li>
+<p>protected works like private, except of the inheriting class which can access protected
+    members</p>
+</li>
+<li>
+<p>default</p>
+</li>
+<li>
+<p>It is when you don't use any access modifier. It is sometimes called the package access
+    because classes can access the members of other classes in the package, but outsite those look
+    like private.</p>
+</li>
+</ul>
+<h2 id="reuse">Reuse<a class="headerlink" href="#reuse" title="Permanent link">¶</a></h2>
+<p>There are two methods of reusing your code in Java:</p>
+<ul>
+<li>composition</li>
+<li>inheritance</li>
+</ul>
+<h3 id="composition">Composition<a class="headerlink" href="#composition" title="Permanent link">¶</a></h3>
+<p>If you think your class needs features of another class you can place object of that class inside.
+It is called composition, because you compose a new class from existing classes.
+The need for such design is when you ask yourself "does my class has a ...?"
+(<em>has-a relationship</em>). For example <code>Heart</code> is good candidate to be used in composition with
+a <code>Person</code> - <code>Person</code> has a <code>Heart</code>.</p>
+<p>Diagram for such construction looks like that:</p>
+<pre class="mermaid"><code>classDiagram
+
+Person *-- Heart : Composition
+class Person {
+    -int age
+    -String name
+
+    +addYears(int years)
+    +setName(String name)
+    +getAge() int
+    +getName() String
+}
+class Heart {
+    -double heartBlooodPressure
+    -int heartRate
+
+    +getHeartBloodPressure() double
+    +getHeartRate() int
+}</code></pre>
+<div class="admonition tip">
+<p class="admonition-title">Clarification of the diagram</p>
+</div>
+<p>We should be more specific and use the composition link in cases where in addition to the part-of
+relationship between <code>Person</code> and <code>Heart</code> - there’s a strong lifecycle dependency between the two,
+meaning that when
+<code>Person</code> is deleted then <code>Heart</code> is also deleted as a result. The composition link shows that a
+class (container, whole) has exclusive ownership over other class/s (parts), meaning that the
+container object and its parts constitute a parent-child/s relationship. If you are interested in
+reading more about class diagrams you can check it
+<a href="https://aviadezra.blogspot.com/2009/05/uml-association-aggregation-composition.html">here</a>
+and diagrams in this article are built by
+<a href="https://mermaid-js.github.io/mermaid/#/classDiagram">Mermaid library</a>
+(you should read that too).</p>
+<p>Features of the Composition:</p>
+<ul>
+<li>it is flexible:</li>
+<li>member objects of new class are private most of the time so changing them does not break
+    client code.</li>
+<li>you can change your code at the runtime, so you don't have worry if your program won't compile (
+  good for extending features) and inheritance imposes compile-time restrictions.</li>
+</ul>
+<h3 id="inheritance">Inheritance<a class="headerlink" href="#inheritance" title="Permanent link">¶</a></h3>
+<p>Sometimes you might want to clone a class and add few features to it to <em>extend</em> it.
+Inheritance is just that, but you don't have to rewrite unchanged part of the functionalities or if
+you change the first class the class under it is changed too. The base class is called a <strong>
+superclass</strong> or a <strong>parent</strong> and copy is called a <strong>subclass</strong> or a <strong>child</strong>. I prefer using
+superclass and subclass terminology, because it is used extensively in the official documentation.
+Here is diagram representation of inheritance.</p>
+<pre class="mermaid"><code>classDiagram
+SuperClass &lt;|-- SubClass : Inheritance </code></pre>
+<p>Arrow should point to the base class.</p>
+<h4 id="general-features-of-the-inheritance">General Features of The Inheritance<a class="headerlink" href="#general-features-of-the-inheritance" title="Permanent link">¶</a></h4>
+<ul>
+<li>Superclass should contain the core of functionalities shared amongst its subclasses.</li>
+<li>With the inheritance you don't need to create intermediate models to provide solution for a
+  problem</li>
+<li>It represents <em>is-a</em> relationship: superclass has in possession all the members of the base
+  class (however <strong>private</strong> elements are not available at clients disposition), so it duplicates
+  all its features (and has possibility to add more functionalities), <strong>so subclass is always a type
+  of superclass</strong></li>
+</ul>
+<h4 id="the-ways-of-implementing-the-inheritance">The Ways of Implementing The Inheritance<a class="headerlink" href="#the-ways-of-implementing-the-inheritance" title="Permanent link">¶</a></h4>
+<p>You can implement inheritance in two ways:</p>
+<ul>
+<li><strong>Add new methods to a subclass.</strong></li>
+</ul>
+<p>You basically add new functionalities to the subclasses thus
+  differentiate and make them more specific.
+  This is the most common way of implementing inheritance.</p>
+<pre class="mermaid"><code>classDiagram
+
+Shape &lt;|-- Circle
+Shape &lt;|-- Triangle
+
+class Shape {
+    -int area
+
+    +draw() void
+    +erase() void
+}
+
+class Circle {
+    -int radius
+
+    +getRadius() int
+    +setRadius() void
+}
+class Triangle {
+    -int height
+    +rotateClockwise(double degrees) void
+    +rotateCounterClockwise(double degrees) void
+}</code></pre>
+<ul>
+<li><strong>Change behavior of existing classes.</strong>
+  It relies on the fact that the base class already has methods and you can change what they do.
+  It is like telling the program "I have superclass method here, but I want it to perform something
+  different". There is special term for this process called <em><strong>overriding</strong></em>.
+  In the following example we are <em>overriding</em> <code>draw</code> and <code>erase</code> method of <code>Shape</code> class.</li>
+</ul>
+<pre class="mermaid"><code>classDiagram
+Shape &lt;|-- Square
+Shape &lt;|-- Circle
+
+class Shape {
+  -int area
+
+  +draw() void
+  +erase() void
+}
+
+class Square {
+  +draw() void
+  +erase() void
+}
+class Circle {
+  +draw() void
+  +erase() void
+}</code></pre>
+<p>We are drawing shapes in different ways: <code>circle.draw()</code> and <code>triangle.draw()</code> will perform task in specific way.</p>
+<p>Inheriting from an existing type creates a new type. This new type contains not only all the members
+of the existing type (although the private ones are hidden away and inaccessible), but more
+importantly it duplicates the interface of the base class. That is, all messages accepted by
+base-class objects are also accepted by derived-class objects. We know the type of a class by the
+messages it accepts, so the derived class is the same type as the base class.</p>
+<p>Understanding the concepts of the inheritance is not enough to write a good code while using it.
+There are several design principles that you should follow when implementing your solutions,
+you can read more about them <a href="/Java_Notes/md_java/design">here</a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+</div>
+<p>This is still work in progress and everything past following line will be changed / removed soon</p>
+<hr/>
+<p>[comment]:</p>
+<h2 id="objects-vs-normal-life">Objects vs normal life<a class="headerlink" href="#objects-vs-normal-life" title="Permanent link">¶</a></h2>
+<p>Real-world objects share two characteristics: They all have <em>state</em> and
+<em>behavior</em>. Dogs have state (name, color, breed, hungry) and behavior
+(barking, fetching, wagging tail).</p>
+<p>Software objects are conceptually similar to real-world objects: they too consist of state and
+related behavior. An object stores its <em>state</em>
+in <strong>fields</strong> (variables in some programming languages) and exposes its
+<em>behavior</em> through <strong>methods</strong> (functions in some programming languages). Methods operate on an
+object's internal state and serve as the primary mechanism for object-to-object communication.</p>
+<p><img alt="Software Object Representation" src="../../images/concepts-object.png"/></p>
+<p>For example in object - bike attributing state (current speed, current pedal cadence, and current
+gear) and providing methods for changing that state, the object remains in control of how the
+outside world is allowed to use it.</p>
+<p><img alt="Object Representation: bicycle example" src="../../images/bicycleObjPaint.png"/></p>
+<p>!!! warning Hiding internal state and requiring all interaction to be performed through an object's
+methods is known as <strong><em>data encapsulation</em></strong> - a fundamental principle of object-oriented
+programming.</p>
+<h3 id="subsec:benefits-of-object-oriented-programming">Benefits Of Object Oriented Programming<a class="headerlink" href="#subsec:benefits-of-object-oriented-programming" title="Permanent link">¶</a></h3>
+<ul>
+<li>
+<p><strong>Modularity</strong>
+  Source code for objects can be maintained independently of other objects source code (like parts
+  for modular guns can make close combat rifle or sniper rifle)</p>
+</li>
+<li>
+<p><strong>Information-hiding</strong>
+  By interacting only with an object's methods, the details of its internal implementation remain
+  hidden from the outside world (like computer's keyboard keys - we provide plastic shell for
+  touching and do not expose circuits which can be easily damaged)</p>
+</li>
+<li>
+<p><strong>Code re-use</strong>
+  If an object already exists (perhaps written by another software developer), you can use that
+  object in your program. This allows specialists to implement/test/debug complex, task-specific
+  objects, which you can then trust to run in your own code (You can copy stuff from stackoverflow
+  and it works, and you still have a job)</p>
+</li>
+<li>
+<p><strong>Pluggability and debugging ease</strong>
+  If a particular object turns out to be problematic, you can simply remove it from your application
+  and plug in a different object as its replacement. This is analogous to fixing mechanical problems
+  in the real world.</p>
+</li>
+</ul>
+<h2 id="sec:what-is-a-class?">What Is a Class?<a class="headerlink" href="#sec:what-is-a-class?" title="Permanent link">¶</a></h2>
+<p>In the real world, you'll often find many individual objects all the same kind. There may be
+thousands of other bicycles in existence, all the same make and model. Each bicycle was built
+from the same set of blueprints and therefore contains the same components. In object-oriented
+terms, we say that your bicycle is an instance of the class of objects known as bicycles. <strong>A class
+is the blueprint from which individual objects are created.</strong></p>
+<p>Let see class describing bicycle:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">core.oop_concepts.e02_classes</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Bicycle</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Those fields will represent object's state</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">cadence</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">speed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">gear</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">//  Those methods will represent object behaviour</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">changeCadence</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">newValue</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">cadence</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">newValue</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">changeGear</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">newValue</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">gear</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">newValue</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">speedUp</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">increment</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">speed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">speed</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">increment</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">applyBrakes</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">decrement</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">speed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">speed</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">decrement</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">printStates</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"cadence:"</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                </span><span class="n">cadence</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">" speed:"</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                </span><span class="n">speed</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">" gear:"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">gear</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>And here is code that will create bicycle objects and change their state via methods:</p>
+<div class="highlight" id="lst:lstinputlisting2"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">core.oop_concepts.e02_classes</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">helpers.OutToFile</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">BicycleDemo</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">//  Create helper object for saving console output to file (for automation in my writing)</span>
+<span class="w">        </span><span class="n">OutToFile</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">OutToFile</span><span class="p">(</span><span class="s">"classes_out"</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// Create two different</span>
+<span class="w">        </span><span class="c1">// Bicycle objects</span>
+<span class="w">        </span><span class="n">Bicycle</span><span class="w"> </span><span class="n">bike1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Bicycle</span><span class="p">();</span>
+<span class="w">        </span><span class="n">Bicycle</span><span class="w"> </span><span class="n">bike2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Bicycle</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// Invoke methods on</span>
+<span class="w">        </span><span class="c1">// those objects</span>
+<span class="w">        </span><span class="n">bike1</span><span class="p">.</span><span class="na">changeCadence</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span>
+<span class="w">        </span><span class="n">bike1</span><span class="p">.</span><span class="na">speedUp</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="w">        </span><span class="n">bike1</span><span class="p">.</span><span class="na">changeGear</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">        </span><span class="n">bike1</span><span class="p">.</span><span class="na">printStates</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">bike2</span><span class="p">.</span><span class="na">changeCadence</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span>
+<span class="w">        </span><span class="n">bike2</span><span class="p">.</span><span class="na">speedUp</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="w">        </span><span class="n">bike2</span><span class="p">.</span><span class="na">changeGear</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">        </span><span class="n">bike2</span><span class="p">.</span><span class="na">changeCadence</span><span class="p">(</span><span class="mi">40</span><span class="p">);</span>
+<span class="w">        </span><span class="n">bike2</span><span class="p">.</span><span class="na">speedUp</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="w">        </span><span class="n">bike2</span><span class="p">.</span><span class="na">changeGear</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="w">        </span><span class="n">bike2</span><span class="p">.</span><span class="na">printStates</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Output:</p>
+<div class="highlight" id="lst:lstinputlisting3"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>cadence:50 speed:10 gear:2
+cadence:40 speed:20 gear:3
+</code></pre></div></td></tr></table></div>
+<h2 id="sec:what-is-inheritance">What Is Inheritance<a class="headerlink" href="#sec:what-is-inheritance" title="Permanent link">¶</a></h2>
+<p>Object-oriented programming allows classes to inherit commonly used state and behavior from other
+classes. In this example, Bicycle now becomes the superclass of MountainBike, RoadBike, and
+TandemBike. In the Java programming language, each class is allowed to have one direct superclass,
+and each superclass has the potential for an unlimited number of subclasses:</p>
+<p><img alt="image" src="../../images/concepts-bikeHierarchy.png"/></p>
+<p>The syntax for creating a subclass is simple. At the beginning of your class declaration, use the
+extends keyword, followed by the name of the class to inherit from:</p>
+<div class="highlight" id="lst:lstinputlisting4"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">core.oop_concepts.e03_inheritance</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">core.oop_concepts.e02_classes.Bicycle</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MountainBike</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Bicycle</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="c1">// This gives MountainBike all the same fields and methods as Bicycle  yet allows its code to focus exclusive on the features that make it unique</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">num_of_dampers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="c1">// field only for mountain bikes</span>
+
+<span class="w">    </span><span class="cm">/*</span>
+<span class="cm">        This makes code for your subclasses easy to read. However, you must take care to properly document the state and behavior that each superclass defines, since that code will not appear in the source file of each subclass.</span>
+<span class="cm">    */</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="sec:what-is-an-interface">What Is an Interface<a class="headerlink" href="#sec:what-is-an-interface" title="Permanent link">¶</a></h2>
+<p>As you've already learned, objects define their interaction with the outside world through the
+methods that they expose. Methods form the object's interface with the outside world; the buttons on
+the front of your television set, for example, are the interface between you and the electrical
+wiring on the other side of its plastic casing. You press the \"power\" button to turn the
+television on and off. In its most common form, an interface is a group of related methods with
+empty bodies. A bicycle's behavior, if specified as an interface, might appear as follows:</p>
+<div class="highlight" id="lst:lstinputlisting5"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">core.oop_concepts.e04_interfaces</span><span class="p">;</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">BicycleInterface</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">changeCadence</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">newValue</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">changeGear</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">newValue</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">speedUp</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">increment</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">applyBrakes</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">decrement</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>To implement this interface, you'd use the <code>implements</code> keyword in the class declaration:</p>
+<div class="highlight" id="lst:lstinputlisting6"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">core.oop_concepts.e04_interfaces</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">GiantBike</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">BicycleInterface</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">cadence</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">speed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">gear</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// The compiler will now require that methods</span>
+<span class="w">    </span><span class="c1">// changeCadence, changeGear, speedUp, and applyBrakes</span>
+<span class="w">    </span><span class="c1">// all be implemented. Compilation will fail if those</span>
+<span class="w">    </span><span class="c1">// methods are missing from this class.</span>
+
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">changeCadence</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">newValue</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">cadence</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">newValue</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">changeGear</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">newValue</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">gear</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">newValue</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">speedUp</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">increment</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">speed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">speed</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">increment</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">applyBrakes</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">decrement</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">speed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">speed</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">decrement</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">printStates</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"cadence:"</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                </span><span class="n">cadence</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">" speed:"</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                </span><span class="n">speed</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">" gear:"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">gear</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Implementing an interface allows a class to become more formal about the behavior it promises to
+provide. Interfaces form a contract between the class and the outside world, and this contract is
+enforced at build time by the compiler. If your class claims to implement an interface, all methods
+defined by that interface must appear in its source code before the class will successfully compile.</p>
+<h2 id="sec:what-is-a-package">What Is a Package<a class="headerlink" href="#sec:what-is-a-package" title="Permanent link">¶</a></h2>
+<p>A package is a namespace that organizes a set of related classes and interfaces. Conceptually you
+can think of packages as being similar to different folders on your computer. You might keep HTML
+pages in one folder, images in another, and scripts or applications in yet another. Because software
+written in the Java programming language can be composed of hundreds or thousands of individual
+classes, it makes sense to keep things organized by placing related classes and interfaces into
+packages. The Java platform provides an enormous class library (a set of packages) suitable for use
+in your own applications. This library is known as the \"Application Programming Interface\", or
+\"API\" for short. Its packages represent the tasks most commonly associated with general-purpose
+programming. For example, a String object contains state and behavior for character strings; a File
+object allows a programmer to easily create, delete, inspect, compare, or modify a file on the
+filesystem; a Socket object allows for the creation and use of network sockets; various GUI objects
+control buttons and check boxes and anything else related to graphical user interfaces. There are
+literally thousands of classes to choose from. This allows you, the programmer, to focus on the
+design of your particular application, rather than the infrastructure required to make it work.</p>
+<p>Here is the view of packages that are created for this chapter:</p>
+<p><img alt="image" id="fig:figure4" src="../../images/package-tree.png"/></p>
+
+
+
+
+
+                
+
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 Andrzej Zahorski
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/andynameistaken" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "search.suggest", "search.highlight", "search.share", "navigation.indexes", "navigation.instant", "navigation.tabs", "header.autohide", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.efa0ade1.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../../extra/refresh_on_toggle_dark_light.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+      
+        <script src="/javascripts/tablesort.js"></script>
+      
+    
+  </body>
+</html>

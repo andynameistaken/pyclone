@@ -1,0 +1,7 @@
+inside main(): a = 1
+inside block with x declared and initialized: x = 2
+inside block with x declared and initialized: a = 1
+Nested block: y = 3
+a = 1
+x = 2
+after block: a = 1

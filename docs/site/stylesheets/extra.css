@@ -1,0 +1,72 @@
+@font-face {
+  font-family: "JetBrainsMono Nerd Font";
+  src: "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/JetBrainsMono.zip";
+}
+
+
+
+[data-md-color-scheme="slate"] {
+  --md-hue: 210; 
+  --md-primary-fg-color:        #60577d;
+  /* --md-accent-fg-color: #FF0000; */
+  
+}
+
+
+
+
+
+
+
+/* Slate theme */
+[data-md-color-scheme=slate] .md-tabs {
+  background-color: #60577d;
+}
+
+/* Slate theme */
+[data-md-color-scheme=slate] .md-nav__item .md-nav__link--active {
+  color: #9788ca;
+}
+
+
+:root > * {
+  --md-code-font: "JetBrainsMono Nerd Font";
+  --md-code-hl-variable-color : #c88174;
+  
+
+
+}
+
+.md-typeset table:not([class]) th:not([align]){text-align:left}.md-typeset table:not([class]) th{
+min-width:10rem;
+padding:1.2rem 1.6rem;
+background-color:rgba(0, 0, 0, 1);
+color:#fff;
+vertical-align:top
+}
+
+.md-typeset a {
+color: var(--md-accent-fg-color);
+}
+
+article a:hover {
+text-decoration: underline;
+}
+
+
+
+/* Force header height and color */
+/* .md-header {
+  height: 50px;
+  background-color: #222;
+} */
+
+.md-header-nav__button.md-logo {
+  margin: 0;
+  padding: 0;
+}
+
+.md-header-nav__button.md-logo img, .md-nav__button img {
+  height: 50px;
+  width: 50px;
+}

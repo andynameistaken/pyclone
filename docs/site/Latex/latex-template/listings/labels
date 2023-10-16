@@ -1,0 +1,18 @@
+i = 0
+continue inner
+i = 1
+continue inner
+i = 2
+continue inner
+i = 3
+continue inner
+i = 4
+continue
+i = 5
+break
+i = 6
+continue inner
+i = 7
+continue outer
+i = 8
+break outer

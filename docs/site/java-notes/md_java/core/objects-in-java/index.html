@@ -1,0 +1,2385 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Programming Notes" name="description"/>
+<meta content="Andrzej Zahorski" name="author"/>
+<link href="https://codenotes.dev/java-notes/md_java/core/objects-in-java/" rel="canonical"/>
+<link href="../../../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.4.2, mkdocs-material-9.1.3" name="generator"/>
+<title>Objects in java - Code Notes</title>
+<link href="../../../../assets/stylesheets/main.c4a75a56.min.css" rel="stylesheet"/>
+<link href="../../../../assets/stylesheets/palette.a0c5b2b5.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Montserrat";--md-code-font:"Roboto Mono"}</style>
+<link href="../../../../stylesheets/extra.css" rel="stylesheet"/>
+<link href="../../../../css/ansi-colours.css" rel="stylesheet"/>
+<link href="../../../../css/pandas-dataframe.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<script src="../../../../js/unpkg.com/d3@6.7.0/dist/d3.min.js" type="text/javascript"></script><script src="../../../../js/unpkg.com/markmap-lib@0.14.1/dist/browser/index.min.js" type="text/javascript"></script><script src="../../../../js/unpkg.com/markmap-view@0.14.0/dist/index.min.js" type="text/javascript"></script><style type="text/css">div.mkdocs-markmap {
+    width: 100%;
+    min-height: 1em;
+    border: 1px solid grey;
+}
+.mkdocs-markmap > svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+</style></head>
+<body data-md-color-accent="" data-md-color-primary="deep-purple" data-md-color-scheme="default" dir="ltr">
+<script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#objects-in-java">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="Code Notes" class="md-header__button md-logo" data-md-component="logo" href="../../../.." title="Code Notes">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Code Notes
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Objects in java
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="deep-purple" data-md-color-scheme="default" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_2" hidden="" title="Switch to dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"></path></svg>
+</label>
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="green" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="" data-md-color-scheme="slate" id="__palette_2" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"></path></svg>
+</label>
+</form>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<a aria-label="Share" class="md-search__icon md-icon" data-clipboard="" data-clipboard-text="" data-md-component="search-share" href="javascript:void(0)" tabindex="-1" title="Share">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"></path></svg>
+</a>
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+</button>
+</nav>
+<div class="md-search__suggest" data-md-component="search-suggest"></div>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
+<div class="md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../tags/">
+      Tags
+    </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../">
+        Java
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../Algorithms/src">
+      Algorithms
+    </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../Python-Notes/iterators_generators/">
+        Python
+      </a>
+</li>
+</ul>
+</div>
+</nav>
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Code Notes" class="md-nav__button md-logo" data-md-component="logo" href="../../../.." title="Code Notes">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+    Code Notes
+  </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../tags/">
+        Tags
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          Java
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+          Java
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_1" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../">Core Java</a>
+<label for="__nav_2_1">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_1_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_1">
+<span class="md-nav__icon md-icon"></span>
+          Core Java
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Object-Oriented-Concepts/">
+        Object-Oriented Concepts
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+          Collections
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_2">
+<span class="md-nav__icon md-icon"></span>
+          Collections
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="/md_java/collections/index.md">
+        None
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../Java_Notes/md_java/collections/Properties.md">
+        Properties
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../Algorithms/src">
+        Algorithms
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          Python
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+          Python
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../Python-Notes/iterators_generators/">
+        Iterators generators
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../Python-Notes/lazy_evaluation/">
+        Lazy evaluation
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+          Old
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_3">
+<span class="md-nav__icon md-icon"></span>
+          Old
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_3_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_3_1" id="__nav_4_3_1_label" tabindex="0">
+          Python course
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_3_1_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_3_1">
+<span class="md-nav__icon md-icon"></span>
+          Python course
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_3_1_1" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../../Python-Notes/old/python-course/md/">Md</a>
+<label for="__nav_4_3_1_1">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_4_3_1_1_label" class="md-nav" data-md-level="4">
+<label class="md-nav__title" for="__nav_4_3_1_1">
+<span class="md-nav__icon md-icon"></span>
+          Md
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../Python-Notes/old/python-course/md/Test/">
+        Test
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../Python-Notes/old/python-course/md/assigment_expressions/">
+        Assigment expressions
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../Python-Notes/old/python-course/md/objects/">
+        Objects
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../Python-Notes/old/python-course/md/t01_strings/">
+        Strings
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../Python-Notes/old/python-course/md/t02_python_internals/">
+        Python Internals
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../Python-Notes/old/python-course/md/t03_variables/">
+        Variables
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../Python-Notes/old/python-course/md/t04_static_vs_dynamic_typing/">
+        T04 static vs dynamic typing
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_3_1_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_3_1_2" id="__nav_4_3_1_2_label" tabindex="0">
+          Notebooks
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_3_1_2_label" class="md-nav" data-md-level="4">
+<label class="md-nav__title" for="__nav_4_3_1_2">
+<span class="md-nav__icon md-icon"></span>
+          Notebooks
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../Python-Notes/old/python-course/notebooks/assigment_expressions/">
+        Assigment expressions
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../Python-Notes/old/python-course/notebooks/objects/">
+        Objects
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../Python-Notes/old/python-course/notebooks/t01_strings/">
+        T01 strings
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../Python-Notes/old/python-course/notebooks/t02_python_internals/">
+        T02 python internals
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../Python-Notes/old/python-course/notebooks/t03_variables/">
+        T03 variables
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_3_2" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../../Python-Notes/old/python-notes/">Python notes</a>
+<label for="__nav_4_3_2">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_4_3_2_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_3_2">
+<span class="md-nav__icon md-icon"></span>
+          Python notes
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../Python-Notes/old/python-notes/lambda/">
+        Lambda
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../Python-Notes/old/python-notes/m01/">
+        M01
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#where-java-stores-objects">
+    Where Java Stores Objects?
+  </a>
+<nav aria-label="Where Java Stores Objects?" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#registers">
+    Registers
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#stack">
+    Stack
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#the-heap">
+    The Heap
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#constant-storage">
+    Constant Storage
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#non-ram-storage">
+    Non-RAM Storage
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#primitive-data-types">
+    Primitive  Data Types
+  </a>
+<nav aria-label="Primitive  Data Types" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#boolean">
+    boolean
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#byte">
+    byte
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#int">
+    int
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#long">
+    long
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#float">
+    float
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#double">
+    double
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#life-of-objects">
+    Life of Objects
+  </a>
+<nav aria-label="Life of Objects" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#scope">
+    Scope
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#scope-of-primitive-data-types">
+    Scope of Primitive Data Types
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#scope-of-objects">
+    Scope of Objects
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#creating-new-data-types">
+    Creating New Data Types
+  </a>
+<nav aria-label="Creating New Data Types" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fields">
+    Fields
+  </a>
+<nav aria-label="Fields" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#default-values-of-primitive-data-types">
+    Default Values of Primitive Data Types
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#methods">
+    Methods
+  </a>
+<nav aria-label="Methods" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#method-arguments">
+    Method Arguments
+  </a>
+<nav aria-label="Method Arguments" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#primitive-type-parameters">
+    Primitive Type Parameters
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_1">
+</a>
+<nav aria-label="" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#object-reference-parameters">
+    Object Reference Parameters
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#static-keyword">
+    static keyword
+  </a>
+<nav aria-label="static keyword" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#static-fields">
+    static fields
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#static-methods">
+    static methods
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#aliasing">
+    Aliasing
+  </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<div class="language-markmap mkdocs-markmap" data-markdown="# Objects in Java&amp;#10;## Where Java Stores Objects?&amp;#10;### Registers&amp;#10;### Stack&amp;#10;### The Heap&amp;#10;### Constant Storage&amp;#10;### Non-RAM Storage&amp;#10;## Primitive  Data Types&amp;#10;### `boolean`&amp;#10;### `byte`&amp;#10;### `int`&amp;#10;### `long`&amp;#10;### `float`&amp;#10;### `double`&amp;#10;## Life of Objects&amp;#10;### Scope&amp;#10;### Scope of Primitive Data Types&amp;#10;### Scope of Objects&amp;#10;## Creating New Data Types&amp;#10;- _fields_ (data members)&amp;#10;- _methods_&amp;#10;### Fields&amp;#10;#### Default Values of Primitive Data Types&amp;#10;## Methods&amp;#10;### Method Arguments&amp;#10;#### Primitive Type Parameters&amp;#10;#### Object Reference Parameters&amp;#10;##  `static` keyword&amp;#10;### `static` fields&amp;#10;### `static` methods&amp;#10;## Aliasing"><svg class="markmap" id="markmap-0"></svg></div>
+<h1 id="objects-in-java">Objects in Java<a class="headerlink" href="#objects-in-java" title="Permanent link">¶</a></h1>
+<p>It is safe to assume that Java language expects you are going to write only Object-Oriented
+programs.
+Even though you are treating everything as an object you manipulate directly its <strong>reference</strong>.</p>
+<p>Reference to an object can be compared to a gamepad (reference) of a console (object).
+As long as you have gamepad in your hands you can send messages to console to turn on the game,
+pause it or simply shut down the device.
+So you are able to modify object via its reference, reference itself has no use when it is not
+connected to the object.
+If gamepad is not paired with console you cannot control it.</p>
+<p>Let's take look at objects and references with <code>String</code> example.
+To create reference first we must specify a type of object it can be connected to and after that
+name of the reference (it cannot start with the number or take name of any reserved keyword in Java)
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">  </span><span class="c1">// type reference_name</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">str</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div></p>
+<p>Here we have only reference of type <code>String</code> with variable name <code>str</code> (we will cover variables
+soon - I need to explain few things before).
+If I tried print <code>str</code> I would get compile error that our <code>str</code> might not be initialized</p>
+<p>It is always safer to initialize reference as early as you know what to put to them, ideally
+in the same line as they are declared.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">  </span><span class="c1">// type reference_name    value</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Big Fat Cat"</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<p>Other objects than strings use a bit different initialization syntax, which consist of a
+<code>new</code> keyword.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">StringBuilder</span><span class="w"> </span><span class="n">sb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StringBuilder</span><span class="p">();</span>
+</code></pre></div></td></tr></table></div>
+<p>That is how we create new object of type <code>StringBuilder</code> and assign it to the reference <code>sb</code>.</p>
+<h2 id="where-java-stores-objects">Where Java Stores Objects?<a class="headerlink" href="#where-java-stores-objects" title="Permanent link">¶</a></h2>
+<p>There are five places where Java stores objects:</p>
+<h3 id="registers">Registers<a class="headerlink" href="#registers" title="Permanent link">¶</a></h3>
+<ul>
+<li>It is the fastest storage option.</li>
+<li>They temporarily holds frequently used data, instructions, and memory address that are to be used by CPU.</li>
+<li>They hold instructions that are currently processed by the CPU.</li>
+<li>Since Java runs inside a virtual machine it is not possible to access low-level hardware such as the registers of your CPU. Especially because their representation and presence may change from one system to another.</li>
+</ul>
+<h3 id="stack">Stack<a class="headerlink" href="#stack" title="Permanent link">¶</a></h3>
+<ul>
+<li>This (second fastest)  option is stored inside RAM memory, however CPU can access it via <em>stack pointer</em>.</li>
+<li>The order of adding stuff to it is  <strong>Last In First Out</strong> (LIFO), which means first item is last to leave
+  the stack and last item is first to leave the stack (it is like adding things atop of each other).</li>
+</ul>
+<p><img alt="Pasted image 20211116235252.png" src="../../../images/Pasted%20image%2020211116235252.png"/></p>
+<ul>
+<li>Every thread running in Java has its own stack and the scope of stack is limited to the thread.
+  <img alt="Pasted image 20211116233325.png" src="../../../images/Pasted%20image%2020211116233325.png"/></li>
+<li>Stack memory contains of method-specific values that are short-lived, variables including references to other objects (objects themselves are placed in the heap), local variables for methods that are being executed. If two threads are running the same code, they still create their own local variables.</li>
+<li>Memory allocated to stack lives until the function returns.</li>
+<li>If there is no space for creating the new objects, it throws the <code>java.lang.StackOverFlowError</code>.</li>
+</ul>
+<p>To visualize things I wrote above I'll show you the program that creates <code>Runnable</code> object and
+two <code>Thread</code> objects that are sharing the same <code>Runnable</code> and draw a diagram that will help you with
+finding out what's going on.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">Shared Runnable</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
+</div>
+</input></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">core.objects_java.memory_allocation</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SharedRunnable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">InterruptedException</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="n">MyRunnable</span><span class="w"> </span><span class="n">mr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MyRunnable</span><span class="p">();</span>
+<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(</span><span class="n">mr</span><span class="p">,</span><span class="w"> </span><span class="s">"Thread 1"</span><span class="p">);</span>
+<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(</span><span class="n">mr</span><span class="p">,</span><span class="w"> </span><span class="s">"Thread 2"</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// starting threads</span>
+<span class="w">        </span><span class="n">t1</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
+<span class="w">        </span><span class="n">t2</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// waiting for threads to finish their execution</span>
+<span class="w">        </span><span class="n">t1</span><span class="p">.</span><span class="na">join</span><span class="p">();</span>
+<span class="w">        </span><span class="n">t2</span><span class="p">.</span><span class="na">join</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">//printing counter value</span>
+<span class="w">        </span><span class="n">mr</span><span class="p">.</span><span class="na">printCounter</span><span class="p">();</span>
+
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">MyRunnable</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
+</div>
+</input></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">core.objects_java.memory_allocation</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyRunnable</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Runnable</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">printCounter</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"counter = "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">counter</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// This will be called by the thread.start() method.</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="na">counter</span><span class="o">++</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span>
+<span class="w">                </span><span class="n">Thread</span>
+<span class="w">                        </span><span class="p">.</span><span class="na">currentThread</span><span class="p">()</span>
+<span class="w">                        </span><span class="p">.</span><span class="na">getName</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">" : "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">counter</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio"><div class="tabbed-labels"><label for="__tabbed_3_1">Output</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">Thread 1 : 100 </span>
+<span class="go">Thread 2 : 200 </span>
+<span class="go">counter = 200 </span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</input></div>
+<p>Below is the graphical of the stuff going inside JVM.
+For now there is no CPU - I don't want to show too much details at once.
+Solid arrows are representing references, dashed arrows are representing side effects of method calls.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:5"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio"><input id="__tabbed_4_2" name="__tabbed_4" type="radio"><input id="__tabbed_4_3" name="__tabbed_4" type="radio"><input id="__tabbed_4_4" name="__tabbed_4" type="radio"><input id="__tabbed_4_5" name="__tabbed_4" type="radio"><div class="tabbed-labels"><label for="__tabbed_4_1">step 1</label><label for="__tabbed_4_2">step 2</label><label for="__tabbed_4_3">step 3</label><label for="__tabbed_4_4">step 4</label><label for="__tabbed_4_5">step 5</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><img alt="JVM-1.png" src="../images/JVMs/JVM-1.png"/></p>
+</div>
+<div class="tabbed-block">
+<p><img alt="JVM-2.png" src="../images/JVMs/JVM-2.png"/></p>
+</div>
+<div class="tabbed-block">
+<p><img alt="JVM-3.png" src="../images/JVMs/JVM-3.png"/></p>
+</div>
+<div class="tabbed-block">
+<p><img alt="JVM-4.png" src="../images/JVMs/JVM-4.png"/></p>
+</div>
+<div class="tabbed-block">
+<p><img alt="JVM-5.png" src="../images/JVMs/JVM-5.png"/></p>
+</div>
+</div>
+</input></input></input></input></input></div>
+<p>After <code>main()</code> method is finished, all threads are finished and all objects are destroyed.</p>
+<p>And know let's modify a little our program by removing <code>syncronized</code> keyword from our <code>run()</code>
+method:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">core.objects_java.memory_model</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyRunnable</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Runnable</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">printCounter</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"counter = "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">counter</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">/// This will be called by the thread.start() method.</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="c1">// synchronized</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="na">counter</span><span class="o">++</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span>
+<span class="w">                </span><span class="n">Thread</span>
+<span class="w">                        </span><span class="p">.</span><span class="na">currentThread</span><span class="p">()</span>
+<span class="w">                        </span><span class="p">.</span><span class="na">getName</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="s">" : "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">counter</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>That will lead to situation called <a href="../concurrent-programming/#race-codition">race condition</a>.
+It means that more than
+This topic is generally shown in more advanced parts in Java books and tutorials, we will talk about
+it in greater detail while exploring <a href="../concurrent-programming/">multithreaded features</a> of Java
+language, but I want to show you what stays behind it so you will understand the significance of 
+hardware architecture you running your
+Java programs on, especially the CPU.
+Even if you don't have control over the CPU registers nor its cache it is still affecting your 
+results of the
+program.</p>
+<p>Let's return to the example of <code>SharedRunnable</code>and <code>MyRunnable</code> to see how it affects the results.
+In <code>SharedRunnable</code> there are two lines <code>t1.join();</code> and <code>t2.join();</code>.
+In this program both threads are finishing their execution before the value of <code>counter</code> is printed.
+However if we remove those lines, we have no guarantee that threads will do their job before final
+printing the value of <code>counter</code>
+and if we start running program over and over again we have guaranteed  occurrence of one of
+threads finishing job as last one.
+after printing value:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio"><input id="__tabbed_5_2" name="__tabbed_5" type="radio"><div class="tabbed-labels"><label for="__tabbed_5_1">Racing</label><label for="__tabbed_5_2">Output</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">core.objects_java.memory_allocation</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Racing</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">MyRunnable</span><span class="w"> </span><span class="n">mr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MyRunnable</span><span class="p">();</span>
+<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(</span><span class="n">mr</span><span class="p">,</span><span class="w"> </span><span class="s">"Thread 1"</span><span class="p">);</span>
+<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(</span><span class="n">mr</span><span class="p">,</span><span class="w"> </span><span class="s">"Thread 2"</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// starting threads</span>
+<span class="w">        </span><span class="n">t1</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
+<span class="w">        </span><span class="n">t2</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">//printing counter value</span>
+<span class="w">        </span><span class="n">mr</span><span class="p">.</span><span class="na">printCounter</span><span class="p">();</span><span class="w"> </span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">counter = 100</span>
+<span class="go">Thread 1 : 100</span>
+<span class="go">Thread 2 : 200</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</input></input></div>
+<p>The diagram of this problem is shown below. It might look like on the border of readability,
+however it is still simplified
+There are 13 steps showing the order of execution of the program.
+Most likely not you won't see every toggle button on the screen, so as soon as you click on
+the first one you'll be able to use <span class="keys"><kbd class="key-arrow-left">Left</kbd></span> and <span class="keys"><kbd class="key-arrow-right">Right</kbd></span> keys to scroll through them.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:13"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio"><input id="__tabbed_6_2" name="__tabbed_6" type="radio"><input id="__tabbed_6_3" name="__tabbed_6" type="radio"><input id="__tabbed_6_4" name="__tabbed_6" type="radio"><input id="__tabbed_6_5" name="__tabbed_6" type="radio"/><input id="__tabbed_6_6" name="__tabbed_6" type="radio"/><input id="__tabbed_6_7" name="__tabbed_6" type="radio"/><input id="__tabbed_6_8" name="__tabbed_6" type="radio"/><input id="__tabbed_6_9" name="__tabbed_6" type="radio"/><input id="__tabbed_6_10" name="__tabbed_6" type="radio"/><input id="__tabbed_6_11" name="__tabbed_6" type="radio"/><input id="__tabbed_6_12" name="__tabbed_6" type="radio"/><input id="__tabbed_6_13" name="__tabbed_6" type="radio"/><div class="tabbed-labels"><label for="__tabbed_6_1">step 1</label><label for="__tabbed_6_2">step 2</label><label for="__tabbed_6_3">step 3</label><label for="__tabbed_6_4">step 4</label><label for="__tabbed_6_5">step 5</label><label for="__tabbed_6_6">step 6</label><label for="__tabbed_6_7">step 7</label><label for="__tabbed_6_8">step 8</label><label for="__tabbed_6_9">step 9</label><label for="__tabbed_6_10">step 10</label><label for="__tabbed_6_11">step 11</label><label for="__tabbed_6_12">step 12</label><label for="__tabbed_6_13">step 13</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li>Beginning of <code>main()</code> method.</li>
+<li>Structures occupying RAM are in dashed box (I will remove it in next slide to reduce clutter).
+<img alt="memory-architecture-1.png" src="../images/memory_architecture/memory-architecture-1.png"/></li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><code>MyRunnable</code> object is created with a reference <code>mr</code>.</li>
+<li>Information about the state of the <code>counter</code> is sent to CPU registers.
+<img alt="memory-architecture-2.png" src="../images/memory_architecture/memory-architecture-2.png"/></li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><code>Thread</code> object is created with a reference <code>t1</code>.</li>
+<li>The object holds a reference to <code>MyRunnable</code> object.</li>
+<li>New thread stack is assigned in the RAM.
+<img alt="memory-architecture-3.png" src="../images/memory_architecture/memory-architecture-3.png"/></li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p>-<code>Thread</code> object is created with a reference <code>t2</code>.
+-The object holds a reference to <code>MyRunnable</code> object.<br/>
+-New thread stack is assigned in the RAM.
+<img alt="memory-architecture-4.png" src="../images/memory_architecture/memory-architecture-4.png"/></p>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><code>t1</code> thread is started via <code>start()</code> method, which calls <code>run()</code> method.</li>
+<li><code>run()</code> method increments <code>counter</code> variable in <code>MyRunnable</code> object - it sends information
+to CPU to update the value of <code>counter</code> variable and we see that <code>counter</code> variable is 1 in
+CPU register.
+<img alt="memory-architecture-5.png" src="../images/memory_architecture/memory-architecture-5.png"/></li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>CPU sends updated value to the cache and then it propagates information to the RAM to the
+<code>MyRunnable</code> object.
+<img alt="memory-architecture-6.png" src="../images/memory_architecture/memory-architecture-6.png"/></li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><code>t1</code> threads finish execution and it is destroyed.</li>
+<li><code>t2</code> thread is started via <code>start()</code> method, which calls <code>run()</code> method and it begins
+  sending information to CPU.
+<img alt="memory-architecture-7.png" src="../images/memory_architecture/memory-architecture-7.png"/></li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>In the meantime <code>mr.printCounter()</code> method is called and it prints <code>counter</code> variable:
+  thread runs independently from the main() once started it happens to do stuff slower than
+  <code>mr.printCounter()</code> method.
+<img alt="memory-architecture-8.png" src="../images/memory_architecture/memory-architecture-8.png"/>]</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><code>run()</code> method finishes sending information to the CPU.
+<img alt="memory-architecture-9.png" src="../images/memory_architecture/memory-architecture-9.png"/></li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>CPU sends updated value to the cache and then it propagates information to the RAM to the
+<code>MyRunnable</code> object.
+<img alt="memory-architecture-10.png" src="../images/memory_architecture/memory-architecture-10.png"/></li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><code>t2.start()</code> finishes execution and it is destroyed.</li>
+<li>stack of <code>t2</code> thread is freed by the Garbage Collector 
+<img alt="memory-architecture-11.png" src="../images/memory_architecture/memory-architecture-11.png"/></li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p><img alt="memory-architecture-12.png" src="../images/memory_architecture/memory-architecture-12.png"/>
+- <code>t2</code> reference is destroyed and it's object is freed by the Garbage Collector.</p>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><code>mr</code> reference is destroyed and it's object is freed by the Garbage Collector.</li>
+<li>Program ends
+<img alt="memory-architecture-13.png" src="../images/memory_architecture/memory-architecture-13.png"/></li>
+</ul>
+</div>
+</div>
+</input></input></input></input></div>
+<p>You can read about the <a href="stack">stack</a>.</p>
+<h3 id="the-heap">The Heap<a class="headerlink" href="#the-heap" title="Permanent link">¶</a></h3>
+<ul>
+<li>Like the stack it is a pool of memory in the RAM.</li>
+<li>It is the place where objects are stored - when you write <code>new</code> keyword, the object is created
+  and placed in the heap.</li>
+<li>It can be dynamically allocated and deallocated - compiler doesn't have to know how long
+  objects need to stay in the heap(unlike in the stack).</li>
+<li>Cleanup of the heap is done by the garbage collector, it is not automatic, unlike in stack
+  than in stack.</li>
+<li>It is slower than the stack.</li>
+<li>If heap space is full, Java throws <code>java.lang.OutOfMemoryError</code>.</li>
+<li>You can change heap size via argument</li>
+</ul>
+<h3 id="constant-storage">Constant Storage<a class="headerlink" href="#constant-storage" title="Permanent link">¶</a></h3>
+<ul>
+<li>The constant value is usually placed inside the program code.
+  This is safe because it will never be changed.
+  Example of constant Read Only Memory (ROM) is a <code>String Memory Pool</code> - every <code>String</code>
+  (not created by <code>new</code>) is stored in this static storage and becomes a constant.
+  I will explain it with all details later, when I will talk about <code>String</code> class later.</li>
+</ul>
+<h3 id="non-ram-storage">Non-RAM Storage<a class="headerlink" href="#non-ram-storage" title="Permanent link">¶</a></h3>
+<ul>
+<li>It is permanent storage of the computer.</li>
+<li>It can store program data even if it is not running.</li>
+<li>It is often used for:</li>
+<li><code>serialized objects</code> - objects converted to sequence of bytes usually of sending it over the
+    network for the other program to read.</li>
+<li><code>persistent objects</code> - data that is stored in the file system for saving objects state after
+    program is closed. Something like saving the game state.</li>
+</ul>
+<h2 id="primitive-data-types">Primitive  Data Types<a class="headerlink" href="#primitive-data-types" title="Permanent link">¶</a></h2>
+<p>Allocating memory for every small bit of data on the heap is somewhat costly thing to do.
+That is why there are few data types that are allocated on the stack so we do not write <code>new</code> to
+create them and instead of being reference, they hold the actual value.
+We call them "primitive" data types or "simple" data types or "primitives".
+Ranges of primitive types are not dependent on the machine you are running on your program,
+which is really cool thing, because it means programs are portable unlike C or C++, which creates
+different sizes for 32-bit and 64-bit machines (and other).</p>
+<table>
+<thead>
+<tr>
+<th>Primitive</th>
+<th>Size</th>
+<th>Min</th>
+<th>Max</th>
+<th>Wrapper</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>boolean</code></td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td><code>Boolean</code></td>
+</tr>
+<tr>
+<td><code>byte</code></td>
+<td>8 bits</td>
+<td><span class="arithmatex">\(-128\)</span></td>
+<td><span class="arithmatex">\(+127\)</span></td>
+<td><code>Byte</code></td>
+</tr>
+<tr>
+<td><code>char</code></td>
+<td>16 bits</td>
+<td>Unicode 0<code>\u0000</code></td>
+<td><span class="arithmatex">\(65,535\)</span> <code>\uffff</code></td>
+<td><code>Character</code></td>
+</tr>
+<tr>
+<td><code>short</code></td>
+<td>16 bits</td>
+<td><span class="arithmatex">\(-32,768\)</span></td>
+<td><span class="arithmatex">\(+32,767\)</span></td>
+<td><code>Short</code></td>
+</tr>
+<tr>
+<td><code>int</code></td>
+<td>32 bits</td>
+<td><span class="arithmatex">\(2^-31\)</span></td>
+<td><span class="arithmatex">\(+2^31 - 1\)</span></td>
+<td><code>Integer</code></td>
+</tr>
+<tr>
+<td><code>long</code></td>
+<td>64 bits</td>
+<td><span class="arithmatex">\(-2^63\)</span></td>
+<td><span class="arithmatex">\(+2^63 - 1\)</span></td>
+<td><code>Long</code></td>
+</tr>
+<tr>
+<td><code>float</code></td>
+<td>32 bits</td>
+<td><a href="https://en.wikipedia.org/wiki/IEEE_754">IEE754</a> (6-7 significant digits)</td>
+<td><a href="https://en.wikipedia.org/wiki/IEEE_754">IEE754</a></td>
+<td><code>Float</code></td>
+</tr>
+<tr>
+<td><code>double</code></td>
+<td>64 bits</td>
+<td><a href="https://en.wikipedia.org/wiki/IEEE_754">IEEE754</a>(15 significant decimal digits)</td>
+<td><a href="https://en.wikipedia.org/wiki/IEEE_754">IEEE754</a></td>
+<td><code>Double</code></td>
+</tr>
+<tr>
+<td><code>void</code></td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td><code>Void</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="boolean"><code>boolean</code><a class="headerlink" href="#boolean" title="Permanent link">¶</a></h3>
+<ul>
+<li><code>boolean</code> size is not specified, it can take either <code>true</code> or <code>false</code> literal values.</li>
+</ul>
+<h3 id="byte"><code>byte</code><a class="headerlink" href="#byte" title="Permanent link">¶</a></h3>
+<ul>
+<li>byte data type is an 8-bit signed two's complement integer.</li>
+<li>It has a minimum value of -128 and a maximum value of 127 (inclusive).</li>
+<li>The byte data type can be useful for saving memory in large arrays.</li>
+</ul>
+<h3 id="int"><code>int</code><a class="headerlink" href="#int" title="Permanent link">¶</a></h3>
+<ul>
+<li>an <code>int</code> is most common data type in Java.</li>
+<li>it is 32-bit signed integer. (signed datatype is the one that can hold negative values).</li>
+<li>To see its min and max value you can use <code>Integer.MIN_VALUE</code> and <code>Integer.MAX_VALUE</code> constants.</li>
+<li>it has a minimum value of <span class="arithmatex">\(-2^{31}\)</span> and a maximum value of <span class="arithmatex">\(2^{31}-1\)</span></li>
+</ul>
+<h3 id="long"><code>long</code><a class="headerlink" href="#long" title="Permanent link">¶</a></h3>
+<ul>
+<li>long data type is a 64-bit two's complement integer. It has minimum value of <span class="arithmatex">\(-2^{63}\)</span>
+  and a maximum value of <span class="arithmatex">\(2^{63}-1\)</span></li>
+<li>to create <code>long</code> value you need to add <code>L</code> or <code>l</code> suffix to the number, for example
+  <code>123L</code> is a <code>long</code> value of <code>123</code>.
+  You are encouraged to use <code>L</code> suffix for clarity: <code>l</code> looks similar to <code>1</code>.</li>
+<li>To check min and max <code>long value</code> you can use <code>Long.MIN_VALUE</code> and <code>Long.MAX_VALUE</code> constants.</li>
+<li>If we do not add <code>L</code> suffix, , Java will interpret the number as <code>int</code> value even if we specified
+  <code>long</code> type.:</li>
+</ul>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">long</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1234567891011</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+we will get compile error:</p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">java: integer number too large</span>
+</code></pre></div></td></tr></table></div>
+However this will compile just fine:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">long</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1234567891011L</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="float"><code>float</code><a class="headerlink" href="#float" title="Permanent link">¶</a></h3>
+<ul>
+<li><code>float</code>is single precision 32-bit floating point number.</li>
+<li>To create <code>float</code> value you need to add <code>F</code> or <code>f</code> suffix to the number, for example <code>123.45F</code> </li>
+<li>is a <code>float</code> value of <code>123.45</code>.</li>
+<li>If you do not specify <code>F</code> suffix Java will interpret the number as <code>double</code> value, even if we
+  defined type as <code>float</code>:</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">float test</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">      </span><span class="c1">// java: incompatible types: possible lossy conversion </span>
+<span class="w">      </span><span class="c1">//        from double to float</span>
+
+<span class="w">      </span><span class="c1">// float f = 1.23456789;</span>
+
+<span class="w">        </span><span class="c1">// fine</span>
+<span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.23456789F</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="double"><code>double</code><a class="headerlink" href="#double" title="Permanent link">¶</a></h3>
+<ul>
+<li><code>double</code> name refers to the fact that it has twice the precision of <code>float</code> type.</li>
+<li>for double we can use <code>d</code> or <code>D</code> suffix, but it is quite useless, because every
+  floating-point number is <code>double</code> by default.</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+</div>
+<p>Do not use <code>double</code> (or any primitive) data type  for storing money or time, because it dosesn't
+provide enough precision.
+For example <code>System.out.println(2.0 - 1.1);</code> will print out <code>0.8999999999999999</code>.
+To deal with high precision numbers, you should use <code>BigDecimal</code> or <code>BigInteger</code> class.
+<code>BigInteger</code> supports arbitrary-precision integers, while <code>BigDecimal</code> supports
+arbitrary-precision fixed-point numbers.
+Both classes have methods that work like their primitive counterparts.</p>
+<h2 id="life-of-objects">Life of Objects<a class="headerlink" href="#life-of-objects" title="Permanent link">¶</a></h2>
+<h3 id="scope">Scope<a class="headerlink" href="#scope" title="Permanent link">¶</a></h3>
+<p>The <em>scope</em>  describes the extent of the visibility of the variables that
+program can see and utilize them..
+Scope is created by using <code>{}</code> braces.
+Braces and area between them form the <em>block</em> of code.</p>
+<h3 id="scope-of-primitive-data-types">Scope of Primitive Data Types<a class="headerlink" href="#scope-of-primitive-data-types" title="Permanent link">¶</a></h3>
+<p>Primitives are created when they are declared and destroyed when they are no longer in the scope.</p>
+<p>Here is an example of scope of primitives:</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">scope example</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Only x is visible here</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// x and b are visible here</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// Only x is visible here, b is not in scope</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:1"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio"/><div class="tabbed-labels"><label for="__tabbed_7_1">Scope</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
+</div>
+</div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">core.objects_java.scopes</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Scope</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"x = "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="p">);</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
+<span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"y = "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="p">);</span>
+<span class="w">                </span><span class="kt">int</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30</span><span class="p">;</span>
+<span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"z = "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">z</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="c1">// we can declare y again, because scope of last y is in inner block</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30</span><span class="p">;</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"y = "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="p">);</span>
+<span class="w">            </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">40</span><span class="p">;</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"x = "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="p">);</span>
+<span class="c1">//            System.out.println("z = " + z);</span>
+<span class="w">            </span><span class="c1">// java: cannot find symbol</span>
+<span class="w">            </span><span class="c1">//  symbol:   variable z</span>
+<span class="w">            </span><span class="c1">//  location: class core.objects_java.scopes.Scope</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:1"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio"/><div class="tabbed-labels"><label for="__tabbed_8_1">Output</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
+</div>
+</div>
+<p><code>console x = 10 y = 20 z = 30 y = 30 x = 40</code>
+As you can see above <code>z</code> is not visible afer its scope is closed.</p>
+<h3 id="scope-of-objects">Scope of Objects<a class="headerlink" href="#scope-of-objects" title="Permanent link">¶</a></h3>
+<p>Objects lifetime differs from primitives.
+After objects scope ends, its reference is destroyed, but object itself remains in the memory.
+You might ask yourself, well, if we do not destroy objects how they are cleaned up?</p>
+<p>In java there is special tool that automatically does that task for you - it is called
+<strong>garbage collector</strong>.
+It searches for all objects created with <code>new</code> keyword and destroys them when they are no longer
+referenced anywhere.
+It is siginificant addition of comfort over programming in <code>C++</code> which requires manual destruction
+of objects.</p>
+<p>There even was architecture of CPU (IBM Cell Processor) in Playstation 3, that required programmers
+writing in <code>C++</code> to manually perform destroying objects in specific order and not doing it
+significantly reduced game performance.
+So if you ever wonder why most multiplatform games of that era looked worse on PS3 than Xbox 360,
+there you have it.
+It is the easiest to see it on "Red Dead Redemption" it even has lower resolution on PS3.
+It had some cool games though, like "Folklore" or "Metal Gear Solid IV"</p>
+<p>If you heard about "memory leak", it happens when programmer forgets to destroy objects and
+they accumulate in RAM.
+With Java you do not have to worry about it - <em>garbage collector</em> does it for you.</p>
+<h2 id="creating-new-data-types">Creating New Data Types<a class="headerlink" href="#creating-new-data-types" title="Permanent link">¶</a></h2>
+<p>To define our own datatypes we form <strong>classes</strong> and put our ideas about the objects into them.
+If you feel uncertanity about the concept of classes, you can jump to this chapter
+<a href="/Java_Notes/md_java/core/Object-Oriented-Concepts#interface-of-the-object">Object Oriented Concepts</a>,
+but I will write a short reminder so you can focus on the topic:
+Classes are the blueprints for creating the objects - they define what you can do with the object
+and how to communicate with it (ie the inteface).</p>
+<p>Each class can consist of:</p>
+<ul>
+<li><em>fields</em> (data members):</li>
+<li><em>methods</em>:</li>
+</ul>
+<h3 id="fields">Fields<a class="headerlink" href="#fields" title="Permanent link">¶</a></h3>
+<p>Fields are references to objects or defined primitive variables, that are part of a class.
+If a field is a reference to an object, we have to initialize it with <code>new</code> keyword somewhere.
+Object initializatio in classes is art in itself and I will cover it later.
+I shown it in example below, but don't form  assumption that this is the only way to perform it
+correctly.</p>
+<p><div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Fields Example</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kd">class</span> <span class="nc">Fields</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">primitive_field</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Object</span><span class="w"> </span><span class="n">some_object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Object</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+To initialize object of <code>Fields</code> class we need to use <code>new</code> keyword:</p>
+<p><div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Fields Test</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">Fields</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Fields</span><span class="p">();</span>
+</code></pre></div></td></tr></table></div>
+If you want get access to a value of the field we use the <em>dot notation</em> (if members do not have a
+private access modifier):</p>
+<p><div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Dot Notation</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">Fields</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Fields</span><span class="p">();</span>
+<span class="n">f</span><span class="p">.</span><span class="na">primitive_field</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="n">f</span><span class="p">.</span><span class="na">some_object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Object</span><span class="p">();</span>
+</code></pre></div></td></tr></table></div>
+If you happen to have reference to an object inside you can add another dot to access it:</p>
+<p><div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Modifying Object State</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">Car</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Car</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Engine</span><span class="p">());</span>
+<span class="n">car</span><span class="p">.</span><span class="na">engine</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
+<span class="n">car</span><span class="p">.</span><span class="na">engine</span><span class="p">.</span><span class="na">setRPM</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+You can access nested objects using dot notation indefinitely, but it might decrease the
+readability.!
+In my opinion, after addition of a second dot it is good idea to restructure code with newline
+after each dot.
+You will bump into this problem when using Java Stream API.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">...</span>
+<span class="n">myList</span>
+<span class="w">    </span><span class="p">.</span><span class="na">stream</span><span class="p">()</span>
+<span class="w">    </span><span class="p">.</span><span class="na">filter</span><span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">startsWith</span><span class="p">(</span><span class="s">"c"</span><span class="p">))</span>
+<span class="w">    </span><span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">String</span><span class="p">::</span><span class="n">toUpperCase</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="na">sorted</span><span class="p">()</span>
+<span class="w">    </span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">println</span><span class="p">);</span>
+<span class="p">...</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="default-values-of-primitive-data-types">Default Values of Primitive Data Types<a class="headerlink" href="#default-values-of-primitive-data-types" title="Permanent link">¶</a></h4>
+<p>When you declare a field with a primitive data type in a class, it is initialized with
+a default value if you do not specify one explicitly.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>char</code></td>
+<td><code>\u0000</code></td>
+</tr>
+<tr>
+<td><code>byte</code></td>
+<td><code>0</code>(<code>byte</code>)</td>
+</tr>
+<tr>
+<td><code>short</code></td>
+<td><code>0</code>(<code>short</code>)</td>
+</tr>
+<tr>
+<td><code>int</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td><code>long</code></td>
+<td><code>0L</code></td>
+</tr>
+<tr>
+<td><code>float</code></td>
+<td><code>0F</code></td>
+</tr>
+<tr>
+<td><code>double</code></td>
+<td><code>0D</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+</div>
+<p>Default values of primitive data types are guaranteed only for variables that are members of
+a class.
+Local variables are not initialized with default values.
+It is good practice to initialize all variables with a value and do not rely default values,
+because it reduces the possibility of creating bugs.
+If you do not initialize local variable and use it your code will not compile and you will get
+<code>java: variable x might not have been initialized</code> where x is the name of the variable.</p>
+<p>Here is program demonstrating default values:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="9:1"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio"/><div class="tabbed-labels"><label for="__tabbed_9_1">DefaultValues</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
+</div>
+</div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">core.objects_java</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DefaultValues</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">boolean</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">byte</span><span class="w"> </span><span class="n">by</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">short</span><span class="w"> </span><span class="n">s</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">l</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">f</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">d</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">DefaultValues</span><span class="w"> </span><span class="n">dv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultValues</span><span class="p">();</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"boolean = "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dv</span><span class="p">.</span><span class="na">b</span><span class="p">);</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"char = "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dv</span><span class="p">.</span><span class="na">c</span><span class="p">);</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"byte = "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dv</span><span class="p">.</span><span class="na">by</span><span class="p">);</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"short = "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dv</span><span class="p">.</span><span class="na">s</span><span class="p">);</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"int = "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dv</span><span class="p">.</span><span class="na">i</span><span class="p">);</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"long = "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dv</span><span class="p">.</span><span class="na">l</span><span class="p">);</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"float = "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dv</span><span class="p">.</span><span class="na">f</span><span class="p">);</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"double = "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dv</span><span class="p">.</span><span class="na">d</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// x++; // java: variable x might not have been initialized</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="10:1"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio"/><div class="tabbed-labels"><label for="__tabbed_10_1">Output</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
+</div>
+</div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">boolean = false // default char value is '\u0000' (null character) which is not </span>
+<span class="go">printable char =  byte = 0 short = 0 int = 0 long = 0 float = 0.0 double = 0.0 </span>
+</code></pre></div></td></tr></table></div>
+<h2 id="methods">Methods<a class="headerlink" href="#methods" title="Permanent link">¶</a></h2>
+<p>Methods in Java form the interface of communication between objects.
+Methods are quite similar to a functions with a few differences:
+Functions require us to pass them all of their data explicitly - function can only work with data
+you provide to it (with the exception of global variables).</p>
+<p>Methods presume the existence of an object, which is passed when we call them.
+For this reason, a method can access all of the data that is associated with the class to
+which that object belongs.</p>
+<p>Methods consist of:</p>
+<ul>
+<li><strong>return type</strong>:  indicates what type of value the method will give when it ends</li>
+<li><strong>method name</strong>:  specifies what you will have to type when you will call the method</li>
+<li><strong>arguments</strong>:    variables that you pass to the method to do something with them</li>
+<li><strong>method body</strong>:  space in which you write code to perform some task</li>
+</ul>
+<p>Here is structural representation of those 4 things:</p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">ReturnType</span><span class="w"> </span><span class="nf">methodName</span><span class="p">(</span><span class="n">argument_1</span><span class="p">,</span><span class="w"> </span><span class="n">argument_2</span><span class="p">,</span><span class="w"> </span><span class="n">argument_N</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Method Body</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+The name of a method and its argument list form a <strong><em>signature</em></strong>, which is its unique identifier -
+ you can't have two methods with the same signature in a single class.
+When you run Java program, it automatically creates list of all method signatures in the class and
+when you call one it checks if it is in the list.</p>
+<p>Methods in Java can be created only as part of a class unlike in Python and Bash - those do not
+ force you to have any class encapsulating them, so it is not a universal thing among the
+  programming languages.</p>
+<p>A method can be called only from an object or a class, if method is static.
+I will cover what does static mean shortly so don't worry.
+To call a method we need object reference, place dot after that and then type method name:</p>
+<p><div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Calling a Method</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// we need to have an object first</span>
+<span class="n">Cat</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Cat</span><span class="p">();</span>
+<span class="c1">// calling meow method with an int argument</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">loudness</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+<span class="n">c</span><span class="p">.</span><span class="na">meow</span><span class="p">(</span><span class="n">loudness</span><span class="p">);</span><span class="w"> </span>
+</code></pre></div></td></tr></table></div>
+If a method return values you can save it to a variable:</p>
+<p><div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Method Returing a Value</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">getTwo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+Then it is possible to:</p>
+<p><div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Saving Return Value</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">two</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">obj</span><span class="p">.</span><span class="na">getTwo</span><span class="p">();</span>
+</code></pre></div></td></tr></table></div>
+where <code>obj</code> is an object of some class that contains <code>getTwo()</code> method.
+Type of the variable has to be compatible with the return type of the method.</p>
+<h3 id="method-arguments">Method Arguments<a class="headerlink" href="#method-arguments" title="Permanent link">¶</a></h3>
+<p>If you ever asked yourself - "what are exactly method arguments: references to variables outside of
+ the method? Copies? Is there a unique mechanism for passing data to a method?", this paragraph 
+ is for you.</p>
+<p>In Computer Science there are two terms for describing how parameters are passed to a method,</p>
+<ul>
+<li><em>call by value</em> - it means that the method gets a copy of the value of the argument.</li>
+<li><em>call by reference</em> - it means method gets the memory location of the argument that is passed.</li>
+</ul>
+<p>Some language can provide both mechanisms, like <code>C++</code> and here is <em>call by reference</em> mechanism of
+<code>C++</code> so you can have a visualization of the concept (<code>&amp;</code> symbol is used to indicate that the
+argument is passed by reference):</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="11:2"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio"/><input id="__tabbed_11_2" name="__tabbed_11" type="radio"/><div class="tabbed-labels"><label for="__tabbed_11_1">C++ References</label><label for="__tabbed_11_2">Output</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+
+<span class="c1">// swap two integers</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">swap</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">b</span><span class="p">)</span><span class="w"> </span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
+<span class="w">    </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="w">    </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// cout stands for console output</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Before swap: a = "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">", b = "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">swap</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"After swap: a = "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">", b = "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// everything run fine so we return 0 exit code</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">Before swap: a = 5, b = 10 After swap: a = 10, b = 5 </span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>Java has only one mechanism for passing data to a method, and it is <em>call by value</em> -
+when you pass primitives into a method, you get a copy of a primitive, when you pass reference to
+an object, you get a copy of that reference (which points to the same object as previous one).</p>
+<p>Because we operate on copies, it is impossible to change contents of the variable passed as an
+argument.</p>
+<h4 id="primitive-type-parameters">Primitive Type Parameters<a class="headerlink" href="#primitive-type-parameters" title="Permanent link">¶</a></h4>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">double</span><span class="w"> </span><span class="n">centimeters</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+
+<span class="n">bob</span><span class="p">.</span><span class="na">raiseHeight</span><span class="p">(</span><span class="n">centimeters</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+Whatever we do in the <code>raiseTemperature</code> method, the value of <code>centimeters</code> will not change.
+Based on the fact we can't modify parameter value and primitive types are not references in Java 
+all changes of their values are lost if we won't <code>return</code> them.</p>
+<h3 id="_1"><a class="headerlink" href="#_1" title="Permanent link">¶</a></h3>
+<p>To see what happens under the hood with primitive parameters (arguments), lets check out method that 
+is supposed to add coupons for lowering the price:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">core.objects_java</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">PassByValPrimitive</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+<span class="w">        </span><span class="n">applyTenPctDisc</span><span class="p">(</span><span class="n">price</span><span class="p">);</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"price = "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">price</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">applyTenPctDisc</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.9</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p><img alt="pass-by-value-primitives.png" src="../pass-by-value-primitives.png"/></p>
+<p>As you can expect after looking from the picture, the value of <code>price</code> is not changed.
+This is what happens:</p>
+<ol>
+<li><code>price</code> is initialized with the value of 100.</li>
+<li><code>applyTenPctDisc</code> method is called, and it gets a copy of 
+   the value of <code>price</code> and assigns it to <code>x</code>.</li>
+<li><code>x</code> is updated with the new value of <code>0.9</code></li>
+<li>the function ends and <code>x</code> is destroyed.</li>
+</ol>
+<h4 id="object-reference-parameters">Object Reference Parameters<a class="headerlink" href="#object-reference-parameters" title="Permanent link">¶</a></h4>
+<p>As I wrote earlier - even if we pass a reference to an object to a method, the method gets a copy of
+ that reference.
+To demonstrate that, lets try to swap two objects:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="12:1"><input checked="checked" id="__tabbed_12_1" name="__tabbed_12" type="radio"/><div class="tabbed-labels"><label for="__tabbed_12_1">Swap Objects</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">core.objects_java</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SwapObjects</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="n">Person</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Person</span><span class="p">();</span>
+<span class="w">        </span><span class="n">p1</span><span class="p">.</span><span class="na">setName</span><span class="p">(</span><span class="s">"John"</span><span class="p">);</span>
+<span class="w">        </span><span class="n">Person</span><span class="w"> </span><span class="n">p2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Person</span><span class="p">();</span>
+<span class="w">        </span><span class="n">p2</span><span class="p">.</span><span class="na">setName</span><span class="p">(</span><span class="s">"Mary"</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"p1.getName() = "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">p1</span><span class="p">.</span><span class="na">getName</span><span class="p">());</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"p2.getName() = "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">p2</span><span class="p">.</span><span class="na">getName</span><span class="p">());</span>
+
+<span class="w">        </span><span class="n">Person</span><span class="p">.</span><span class="na">swap</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="w"> </span><span class="n">p2</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"p1.getName() = "</span><span class="w"> </span><span class="n">G</span><span class="o">+</span><span class="w"> </span><span class="n">p1</span><span class="p">.</span><span class="na">getName</span><span class="p">());</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"p2.getName() = "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">p2</span><span class="p">.</span><span class="na">getName</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">class</span> <span class="nc">Person</span><span class="w"> </span><span class="p">{</span>
+<span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getName</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setName</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">swap</span><span class="p">(</span><span class="n">Person</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">Person</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Person</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
+<span class="w">        </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="w">        </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>Here we have two references to <code>Person</code> objects, and we call <code>swap</code> method on them.
+<code>a</code> and <code>b</code> are copies of <code>p1</code> and <code>p2</code> references respectively and method swaps those copies.
+After method finishes, <code>p1</code> and <code>p2</code> their references are destroyed from the stack memory.
+In summary, <strong>a method can't make an object parameter refer to a new object</strong>, because copied
+reference will be destroyed after the method ends.</p>
+<p><img alt="pass-by-value-objects.png" src="../images/memory_architecture/pass-by-value-objects.png"/></p>
+<ul>
+<li>orange arrows show copying of the references</li>
+<li>blue arrows show references outside the method</li>
+<li>green arrows show references inside the method, which are destroyed after the method ends</li>
+</ul>
+<p>As you have seen earlier - it is impossible to change primitive type parameters.
+It works differently with arguments that are object references:
+even if in the inside of the method we operate with a copy of the original reference, we can still 
+modify object state, because copied reference  points to the same object as the original one.
+It is like you have two file shortcuts (soft links for UNIX people) pointing to the same file.
+Let's check this feature with an example of swapping names of two <code>Person</code> objects:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="13:2"><input checked="checked" id="__tabbed_13_1" name="__tabbed_13" type="radio"/><input id="__tabbed_13_2" name="__tabbed_13" type="radio"/><div class="tabbed-labels"><label for="__tabbed_13_1">Swap Names</label><label for="__tabbed_13_2">Output</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">core.objects_java</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ModifyObjectParameter</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Create a new object</span>
+<span class="w">        </span><span class="n">Person</span><span class="w"> </span><span class="n">person_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Person</span><span class="p">();</span>
+<span class="w">        </span><span class="n">person_1</span><span class="p">.</span><span class="na">setName</span><span class="p">(</span><span class="s">"John"</span><span class="p">);</span>
+<span class="w">        </span><span class="n">Person</span><span class="w"> </span><span class="n">person_2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Person</span><span class="p">();</span>
+<span class="w">        </span><span class="n">person_2</span><span class="p">.</span><span class="na">setName</span><span class="p">(</span><span class="s">"Mary"</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"Before swap: "</span><span class="p">);</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"person_1.getName() = "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">person_1</span><span class="p">.</span><span class="na">getName</span><span class="p">());</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"person_2.getName() = "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">person_2</span><span class="p">.</span><span class="na">getName</span><span class="p">());</span>
+
+<span class="w">        </span><span class="n">swapNames</span><span class="p">(</span><span class="n">person_1</span><span class="p">,</span><span class="w"> </span><span class="n">person_2</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"After swap: "</span><span class="p">);</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"person_1.getName() = "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">person_1</span><span class="p">.</span><span class="na">getName</span><span class="p">());</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"person_2.getName() = "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">person_2</span><span class="p">.</span><span class="na">getName</span><span class="p">());</span>
+
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">swapNames</span><span class="p">(</span><span class="n">Person</span><span class="w"> </span><span class="n">p_1</span><span class="p">,</span><span class="w"> </span><span class="n">Person</span><span class="w"> </span><span class="n">p_2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// step 1</span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">tmp_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p_1</span><span class="p">.</span><span class="na">getName</span><span class="p">();</span>
+<span class="w">        </span><span class="c1">// step 2</span>
+<span class="w">        </span><span class="n">p_1</span><span class="p">.</span><span class="na">setName</span><span class="p">(</span><span class="n">p_2</span><span class="p">.</span><span class="na">getName</span><span class="p">());</span>
+<span class="w">        </span><span class="c1">// step 3</span>
+<span class="w">        </span><span class="n">p_2</span><span class="p">.</span><span class="na">setName</span><span class="p">(</span><span class="n">tmp_name</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">Before swap: </span>
+<span class="go">person_1.getName() = John</span>
+<span class="go">person_2.getName() = Mary</span>
+<span class="go">After swap: </span>
+<span class="go">person_1.getName() = Mary</span>
+<span class="go">person_2.getName() = John</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>Here is the visual representation of the code above,
+everything that is not on the Heap is on the Stack.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="14:6"><input checked="checked" id="__tabbed_14_1" name="__tabbed_14" type="radio"/><input id="__tabbed_14_2" name="__tabbed_14" type="radio"/><input id="__tabbed_14_3" name="__tabbed_14" type="radio"/><input id="__tabbed_14_4" name="__tabbed_14" type="radio"/><input id="__tabbed_14_5" name="__tabbed_14" type="radio"/><input id="__tabbed_14_6" name="__tabbed_14" type="radio"/><div class="tabbed-labels"><label for="__tabbed_14_1">step 1</label><label for="__tabbed_14_2">step 1.1</label><label for="__tabbed_14_3">step 2</label><label for="__tabbed_14_4">step 2.1</label><label for="__tabbed_14_5">step 3</label><label for="__tabbed_14_6">end</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><code>p_1.getName()</code> returns <code>"John"</code>
+<img alt="method_obj_ref_1_1.png" src="../images/method_obj_ref/method_obj_ref_1_1.png"/></p>
+</div>
+<div class="tabbed-block">
+<p><code>tmp_name</code> refers to <code>String</code> object with value <code>"John"</code>
+<img alt="method_obj_ref_1_2.png" src="../images/method_obj_ref/method_obj_ref_1_2.png"/></p>
+</div>
+<div class="tabbed-block">
+<p><code>p_2.getName()</code> returns <code>"Mary"</code>
+<img alt="method_obj_ref_2_1.png" src="../images/method_obj_ref/method_obj_ref_2_1.png"/></p>
+</div>
+<div class="tabbed-block">
+<p><code>p1_setName</code> method is called with <code>"Mary"</code> as an argument
+<img alt="method_obj_ref_2_2.png" src="../images/method_obj_ref/method_obj_ref_2_2.png"/></p>
+</div>
+<div class="tabbed-block">
+<p><code>p_2.setName(tmp_name)</code> is called with <code>"John"</code> as an argument
+<img alt="method_obj_ref_3.png" src="../images/method_obj_ref/method_obj_ref_3.png"/></p>
+</div>
+<div class="tabbed-block">
+<p>Method <code>swapNames</code> ends and all local variables are destroyed.
+<img alt="method_obj_ref_4.png" src="../images/method_obj_ref/method_obj_ref_4.png"/></p>
+</div>
+</div>
+</div>
+<p>To prove that passed reference to the method points to the same object as the original one, we can
+write small test program with a little help of default printing mechanism of Java: if <span class="arithmatex">\(x\)</span> is a 
+reference to an object of type <span class="arithmatex">\(T\)</span>, and <span class="arithmatex">\(T\)</span> does not have special method for printing, which is 
+called <code>toString</code>, then <span class="arithmatex">\(x\)</span> will be printed as <code>T@address_of_x</code> or if <span class="arithmatex">\(T\)</span> is in the package <span class="arithmatex">\(p\)</span> 
+which we imported, then
+<span class="arithmatex">\(x\)</span> will be printed as <code>p.T@address_of_x.</code></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>I will cover packages later, because right now I'm trying to focus on explaining the inner 
+workings of the objects and references.
+All you need to know right now about packages is they organize classes like directories:
+so <code>package core.objects_java;</code> means that all classes in this package are in the 
+<code>core/objects_java</code>
+BTW, I'm writing such comments to form something storytelling for you.
+You can let me know if it is beneficial for you or you rather find it annoying.</p>
+</div>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Printing Adress</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">core.objects_java</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ObjReferencesMethods</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">ObjReferencesMethods</span><span class="w"> </span><span class="n">o</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ObjReferencesMethods</span><span class="p">();</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"o in main() = "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">o</span><span class="p">);</span>
+<span class="w">        </span><span class="n">printRefAddress</span><span class="p">(</span><span class="n">o</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">printRefAddress</span><span class="p">(</span><span class="n">ObjReferencesMethods</span><span class="w"> </span><span class="n">obj</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"obj in printRefAddress = "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">obj</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">o in main() = core.objects_java.ObjReferencesMethods@36baf30c</span>
+<span class="go">obj in printRefAddress = core.objects_java.ObjReferencesMethods@36baf30c</span>
+</code></pre></div></td></tr></table></div>
+<p>As you see <code>o</code> and <code>obj</code> are references to the same object.
+This is a treat in terms of efficiency, because we don't need to assign new resources for 
+duplicating the object.</p>
+<h2 id="static-keyword"><code>static</code> keyword<a class="headerlink" href="#static-keyword" title="Permanent link">¶</a></h2>
+<p>Explicit definition of the <code>static</code> is "bound by class / not bound by the object"
+Practically it is used for two things:</p>
+<ul>
+<li>you want to have a single shared field of the class regardless of how many objects you create</li>
+<li>you need method that can run without existence of the object of enclosing class</li>
+</ul>
+<h3 id="static-fields"><code>static</code> fields<a class="headerlink" href="#static-fields" title="Permanent link">¶</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">core.objects_java.static_test</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Employee</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">globalId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">empId</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setEmpId</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">empId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">++</span><span class="n">globalId</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getEmpId</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">empId</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setName</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getName</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">core.objects_java.static_test</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">StaticFieldTest</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// step 1 start main()</span>
+<span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="c1">// creating employee objects</span>
+<span class="w">        </span><span class="c1">// step 2</span>
+<span class="w">        </span><span class="n">Employee</span><span class="w"> </span><span class="n">employee_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Employee</span><span class="p">();</span>
+<span class="w">        </span><span class="c1">// step 3</span>
+<span class="w">        </span><span class="n">Employee</span><span class="w"> </span><span class="n">employee_2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Employee</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// setting names</span>
+
+<span class="w">        </span><span class="c1">// step 4</span>
+<span class="w">        </span><span class="n">employee_1</span><span class="p">.</span><span class="na">setName</span><span class="p">(</span><span class="s">"Lucy"</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// step 5</span>
+<span class="w">        </span><span class="n">employee_2</span><span class="p">.</span><span class="na">setName</span><span class="p">(</span><span class="s">"Sally"</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// setting ids</span>
+
+<span class="w">        </span><span class="c1">// step 6</span>
+<span class="w">        </span><span class="n">employee_1</span><span class="p">.</span><span class="na">setEmpId</span><span class="p">();</span>
+<span class="w">        </span><span class="c1">// step 7</span>
+<span class="w">        </span><span class="n">employee_2</span><span class="p">.</span><span class="na">setEmpId</span><span class="p">();</span>
+
+
+<span class="w">        </span><span class="c1">// printing out info about the employees</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"employee_1.getEmpId() = "</span>
+<span class="w">                </span><span class="o">+</span><span class="w"> </span><span class="n">employee_1</span><span class="p">.</span><span class="na">getEmpId</span><span class="p">());</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"employee_1.getName() = "</span>
+<span class="w">                </span><span class="o">+</span><span class="w"> </span><span class="n">employee_1</span><span class="p">.</span><span class="na">getName</span><span class="p">());</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"employee_2.getEmpId() = "</span>
+<span class="w">                </span><span class="o">+</span><span class="w"> </span><span class="n">employee_2</span><span class="p">.</span><span class="na">getEmpId</span><span class="p">());</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"employee_2.getName() = "</span>
+<span class="w">                </span><span class="o">+</span><span class="w"> </span><span class="n">employee_2</span><span class="p">.</span><span class="na">getName</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">employee_1.getEmpId() = 1</span>
+<span class="go">employee_1.getName() = Lucy</span>
+
+<span class="go">employee_2.getEmpId() = 2</span>
+<span class="go">employee_2.getName() = Sally</span>
+</code></pre></div></td></tr></table></div>
+<p>Here is how Java sees the code shown above in simplified form (Java has few special areas in heap):</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="15:8"><input checked="checked" id="__tabbed_15_1" name="__tabbed_15" type="radio"/><input id="__tabbed_15_2" name="__tabbed_15" type="radio"/><input id="__tabbed_15_3" name="__tabbed_15" type="radio"/><input id="__tabbed_15_4" name="__tabbed_15" type="radio"/><input id="__tabbed_15_5" name="__tabbed_15" type="radio"/><input id="__tabbed_15_6" name="__tabbed_15" type="radio"/><input id="__tabbed_15_7" name="__tabbed_15" type="radio"/><input id="__tabbed_15_8" name="__tabbed_15" type="radio"/><div class="tabbed-labels"><label for="__tabbed_15_1">step 1</label><label for="__tabbed_15_2">step 2</label><label for="__tabbed_15_3">step 3</label><label for="__tabbed_15_4">step 4</label><label for="__tabbed_15_5">step 5</label><label for="__tabbed_15_6">step 6</label><label for="__tabbed_15_7">step 7</label><label for="__tabbed_15_8">step 8</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><code>static globalId</code> is created in the heap  (even if we do not create any <code>Employee</code> object)
+and after that <code>main</code> method is called.
+<img alt="static-field-test-1.png" src="../images/static_field_test/static-field-test-1.png"/></p>
+</div>
+<div class="tabbed-block">
+<p><code>Employee</code> object is created with <code>employee_1</code> reference to it
+<img alt="static-field-test-2.png" src="../images/static_field_test/static-field-test-2.png"/></p>
+</div>
+<div class="tabbed-block">
+<p><code>Employee</code> object is created with <code>employee_2</code> reference to it
+<img alt="static-field-test-3.png" src="../images/static_field_test/static-field-test-3.png"/></p>
+</div>
+<div class="tabbed-block">
+<p><code>employee_1.setName("Lucy")</code> is called
+<img alt="static-field-test-4.png" src="../images/static_field_test/static-field-test-4.png"/></p>
+</div>
+<div class="tabbed-block">
+<p>employee_2.setName("Sally") is called
+<img alt="static-field-test-5.png" src="../images/excalidraw/static-field-test-5.png"/></p>
+</div>
+<div class="tabbed-block">
+<p><code>employee_1.setEmpId()</code> is called
+<code>empId</code> = ++globalId means that <code>globalId</code> is incremented by 1 and then assigned to <code>empId</code>
+<code>globalId</code> is seen by all the objects of the class and as you see there is only <strong>one</strong>
+<code>globalId</code> in the heap and so every object has the same information about it and
+ that is what <code>static</code> does.
+<img alt="static-field-test-6.png" src="../images/excalidraw/static-field-test-6.png"/></p>
+</div>
+<div class="tabbed-block">
+<p><code>employee_2.setEmpId()</code> is called, which adds 1 to <code>globalId</code> and then assigns it to <code>empId</code>.
+<img alt="static-field-test-7.png" src="../images/excalidraw/static-field-test-7.png"/></p>
+</div>
+<div class="tabbed-block">
+<p><img alt="static-field-test-8.png" src="../images/excalidraw/static-field-test-8.png"/>
+This slide is just a quick recap of final state of the variables.</p>
+</div>
+</div>
+</div>
+<p>In the other hand, if we do not use <code>static</code> keyword, we will have as many <code>globalId</code> as many
+objects   of <code>Employee</code> class we create.
+A field that is not declared <code>static</code> is called <strong>instance field</strong> or <strong>non-static field</strong>.</p>
+<h3 id="static-methods"><code>static</code> methods<a class="headerlink" href="#static-methods" title="Permanent link">¶</a></h3>
+<p>If we want to have method that is not tied to the object, we make them <code>static</code>.
+In this case, we can call them even without creating any objects.
+To use static methods, we need to use <code>class name.method_name()</code> syntax or we can call it from
+the object: <code>object_name.method_name()</code>, but first way is preferred, because it emphasizes the
+fact that we do not need to create any object to call the method.</p>
+<p>Here is an example of static method and use of both syntaxes:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">core.objects_java.static_test</span><span class="p">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * StaticMethods</span>
+<span class="cm"> */</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">StaticMethods</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Incrementable</span><span class="w"> </span><span class="n">inc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Incrementable</span><span class="p">();</span>
+<span class="w">        </span><span class="n">inc</span><span class="p">.</span><span class="na">increment</span><span class="p">();</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"counter = "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">counter</span><span class="p">);</span>
+<span class="w">        </span><span class="n">Incrementable</span><span class="p">.</span><span class="na">increment</span><span class="p">();</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"counter = "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">counter</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">Incrementable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">increment</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">StaticMethods</span><span class="p">.</span><span class="na">counter</span><span class="o">++</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">counter = 1</span>
+<span class="go">counter = 2</span>
+</code></pre></div></td></tr></table></div>
+<p>An example of static method is <code>public static void main(String[] args)</code>, in which we put all
+code that we want to run.
+It is static, because, we might run code that do not create any object in which <code>main</code> method is
+contained (we might not to create any object at all, however in Java it is highly unlikely).</p>
+<h2 id="aliasing">Aliasing<a class="headerlink" href="#aliasing" title="Permanent link">¶</a></h2>
+<p>It describes the situation when we have more than one reference to the same object.
+It is often confusing for newcomers, when something is written to one of them:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">core.objects_java.aliasing</span><span class="p">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Alias</span>
+<span class="cm"> */</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Alias</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setVal</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getVal</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Alias</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Alias</span><span class="p">();</span>
+<span class="w">        </span><span class="n">a</span><span class="p">.</span><span class="na">setVal</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="w">        </span><span class="n">Alias</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"a.getVal(): "</span><span class="o">+</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="na">getVal</span><span class="p">());</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"b.getVal(): "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="na">getVal</span><span class="p">());</span>
+<span class="w">        </span><span class="n">b</span><span class="p">.</span><span class="na">setVal</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"a.getVal(): "</span><span class="o">+</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="na">getVal</span><span class="p">());</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"b.getVal(): "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="na">getVal</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">a.getVal(): 10</span>
+<span class="go">b.getVal(): 10</span>
+<span class="go">a.getVal(): 20</span>
+<span class="go">b.getVal(): 20</span>
+</code></pre></div></td></tr></table></div>
+<p><code>Alias a</code> an <code>Alias b</code> both point to the same object, because only one <code>new</code> was used.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="16:4"><input checked="checked" id="__tabbed_16_1" name="__tabbed_16" type="radio"/><input id="__tabbed_16_2" name="__tabbed_16" type="radio"/><input id="__tabbed_16_3" name="__tabbed_16" type="radio"/><input id="__tabbed_16_4" name="__tabbed_16" type="radio"/><div class="tabbed-labels"><label for="__tabbed_16_1">step 1</label><label for="__tabbed_16_2">step 2</label><label for="__tabbed_16_3">step 3</label><label for="__tabbed_16_4">step 4</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><code>new Alias()</code> is called
+<img alt="alias-1.png" src="../images/aliases/alias-1.png"/></p>
+</div>
+<div class="tabbed-block">
+<p><code>a.setVal(10)</code> is called
+<img alt="alias-2.png" src="../images/aliases/alias-2.png"/></p>
+</div>
+<div class="tabbed-block">
+<p><code>b = a</code> is called
+<img alt="alias-3.png" src="../images/aliases/alias-3.png"/></p>
+</div>
+<div class="tabbed-block">
+<p><code>b.setVal(20)</code> is called
+<img alt="alias-4.png" src="../images/aliases/alias-4.png"/></p>
+</div>
+</div>
+</div>
+<p>That works differently with primitive types:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">core.objects_java.aliasing</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">PrimitiveNoAlias</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"a: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span><span class="p">);</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"b: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+<span class="w">        </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"a: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span><span class="p">);</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"b: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">a: 10</span>
+<span class="go">b: 10</span>
+<span class="go">a: 10</span>
+<span class="go">b: 20</span>
+</code></pre></div></td></tr></table></div>
+<p>Primitive types are copied by value, so when we change <code>b</code> value, it does not change <code>a</code> value.
+As you have seen earlier with methods, when we pass object reference into a method in fact
+it is an alias.</p>
+<p>Making exact copies of object in Java is quite complex, and we will cover it in 
+later chapter: <a href="Copying%20Objects">Copying Objects</a></p>
+<ul>
+<li>test
+** test2</li>
+</ul>
+</article>
+</div>
+</div>
+<button class="md-top md-icon" data-md-component="top" hidden="" type="button">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
+            Back to top
+          </button>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Copyright © 2022 Andrzej Zahorski
+    </div>
+</div>
+<div class="md-social">
+<a class="md-social__link" href="https://github.com/andynameistaken" rel="noopener" target="_blank" title="github.com">
+<svg viewbox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "search.suggest", "search.highlight", "search.share", "navigation.indexes", "navigation.instant", "navigation.tabs", "header.autohide", "content.code.annotate"], "search": "../../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+<script src="../../../../assets/javascripts/bundle.efa0ade1.min.js"></script>
+<script src="../../../../javascripts/mathjax.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="../../../../extra/refresh_on_toggle_dark_light.js"></script>
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+<script src="/javascripts/tablesort.js"></script>
+<script type="text/javascript">(function initializeMarkmap() {
+    function update_markmaps() {
+        const markmap_transformer = new markmap.Transformer();
+        const markmaps = document.getElementsByClassName('mkdocs-markmap');
+        var el, content, svg, root, m;
+        for (var i = 0; i < markmaps.length; i++) {
+            el = markmaps[i];
+            content = el.getAttribute('data-markdown').replaceAll('&#10;', '\n');
+            svg = el.querySelector('svg');
+            root = markmap_transformer.transform(content).root;
+            m = markmap.Markmap.create(svg, null, root);
+
+            (function(obj, e, r) {
+                obj.rescale(1).then(function() {
+                    e.parentElement.style.height = (e.getBBox().height + 10) + "px";
+                    requestAnimationFrame(() => { obj.fit(); })
+                });
+            })(m, svg, root);
+        }
+    }
+
+    var MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
+    var observer = new MutationObserver(function(mutations) {
+        update_markmaps();
+    });
+
+    var target = document.getElementById('mkdocs-decrypted-content');
+    if (undefined != target) {
+        observer.observe(target, { childList: true });
+    }
+
+    update_markmaps();
+})();
+</script></body>
+</html>

@@ -1,0 +1,4 @@
+[0, 1, 2, 3, 4]
+[0, 1, 2, 3, 8]
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 5
+	at language_basics.static_strong_typing.Boundaries.main(Boundaries.java:20)

@@ -1,0 +1,5 @@
+Error will be thrown in runtime, so this line will print before it will happen
+Exception in thread "main" java.lang.StringIndexOutOfBoundsException: String index out of range: 106
+	at java.base/java.lang.StringLatin1.charAt(StringLatin1.java:47)
+	at java.base/java.lang.String.charAt(String.java:693)
+	at language_basics.static_strong_typing.RuntimeSafety.main(RuntimeSafety.java:12)
